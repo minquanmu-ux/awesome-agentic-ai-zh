@@ -5,6 +5,8 @@
 
 ⏱ **Time estimate**: 1 week (~5-8 hours)
 
+> 💡 **Don't recognize a term?** (LLM / token / context window / temperature / RAG / agent / …) → check [`resources/glossary.en.md`](../resources/glossary.en.md) for 30-second definitions.
+
 ## 📌 Learning Goals
 
 After this stage you will be able to:

@@ -57,7 +57,7 @@ CLI 跑得順了之後，下一步：**把它接到你的真實工作流程裡**
 
 ### MCP server collection（接 CLI 用）
 
-> 💡 **要找接日常工具的 MCP**（Notion / Obsidian / Excel / Postgres / Playwright / Slack / Linear / Figma 等）：[`resources/mcp-skills-catalog.md`](../../resources/mcp-skills-catalog.md)——41 個分類整理，每個都有 stars / license / 適合誰。下面只列「寫自己 MCP server / 找 reference」用的核心 catalog。
+> 💡 **要找接日常工具的 MCP**（Notion / Obsidian / Excel / Postgres / Playwright / Slack / Linear / Figma 等）：[`resources/mcp-skills-catalog.md`](../../resources/mcp-skills-catalog.md)——54 個分類整理，每個都有 stars / license / 適合誰。下面只列「寫自己 MCP server / 找 reference」用的核心 catalog。
 
 #### [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) ⭐⭐⭐⭐⭐
 ★ 85k+ — 官方 reference servers。filesystem、github、sqlite、git、time、fetch、memory、sequential-thinking。

@@ -4,6 +4,8 @@
 
 ⏱ **時間估算**：1 週（約 5-8 小時）
 
+> 💡 **看不懂某個詞**（LLM / token / context window / temperature / RAG / agent⋯）→ 先翻 [`resources/glossary.md`](../resources/glossary.md) 查 30 秒再回來。
+
 ## 📌 學習目標
 
 走完這個階段後你會：

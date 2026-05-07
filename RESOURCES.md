@@ -6,6 +6,8 @@
 
 這份檔案集中放：用語說明、常用 MCP / Skill 整合 highlight、同主題 awesome list、中文社群資源。從主 README 抽出來避免主頁過長。
 
+> 💡 **不懂某個詞**（LLM、agent、RAG、token、向量資料庫⋯）→ [`resources/glossary.md`](resources/glossary.md)（用語小辭典，30 多個詞每個 30-80 字解釋）
+
 ---
 
 ## 三個核心用語：MCP / Skills / Plugins

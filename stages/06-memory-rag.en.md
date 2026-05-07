@@ -5,6 +5,8 @@
 
 ⏱ **Time estimate**: 2 weeks (~10 hours)
 
+> 💡 This stage is term-heavy (**RAG / vector DB / embedding / chunking / hybrid search / reranking / …**) → if any are unfamiliar, check [`resources/glossary.en.md` §3](../resources/glossary.en.md#3-memory--retrieval--rag) first.
+
 Agents that don't remember past interactions are not useful. RAG (Retrieval-Augmented Generation) is the standard approach. This stage covers both.
 
 ## 📌 Learning Goals
