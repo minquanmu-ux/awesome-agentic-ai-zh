@@ -126,7 +126,7 @@ After the main path, pick one of 5 specialized branches. **Not sure which?**
 |---|---|---|
 | 🔬 [Researcher](branches/for-researcher.en.md) | Grad students, postdocs, PIs | Lit triage · paper writing · multi-agent review |
 | 💻 [Developer](branches/for-developer.en.md) | Software engineers | Cursor · Aider · CLI delegation · code review |
-| 🎓 [Teacher](branches/for-teacher.en.md) 🚧 | Teachers, instructors | Lesson planning · slides · student feedback *(thinnest section, contributions welcome)* |
+| 🎓 [Teacher](branches/for-teacher.en.md) | Teachers, instructors | Lesson planning · slides · student feedback · privacy / ethics · prompt templates |
 | 📊 [Knowledge Worker](branches/for-knowledge-worker.en.md) | Consultants, PMs, analysts | Email · meeting notes · report automation |
 | 👥 [Everyday User](branches/for-everyday-users.en.md) | ChatGPT / Claude.ai users | Daily writing · learning · privacy · CLI agent intro |
 

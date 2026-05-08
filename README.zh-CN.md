@@ -112,7 +112,7 @@ cd awesome-agentic-ai-zh
 |---|---|---|
 | 🔬 [研究员](branches/for-researcher.zh-CN.md) | 研究生、博后、PI | 文献整理 · paper 写作 · multi-agent review |
 | 💻 [开发者](branches/for-developer.zh-CN.md) | 软件工程师 | Cursor · Aider · CLI delegation · code review |
-| 🎓 [老师](branches/for-teacher.zh-CN.md) 🚧 | 老师、讲师 | 备课 · 幻灯片 · 学生 feedback *（目前最薄、欢迎贡献）* |
+| 🎓 [老师](branches/for-teacher.zh-CN.md) | 老师、讲师 | 备课 · 幻灯片 · 学生 feedback · 隐私 / 伦理 · prompt 范本 |
 | 📊 [知识工作者](branches/for-knowledge-worker.zh-CN.md) | 顾问、PM、分析师 | Email · 会议记录 · report 自动化 |
 | 👥 [日常用户](branches/for-everyday-users.zh-CN.md) | ChatGPT / Claude.ai 用户 | 写信 · 学习 · 隐私场景 · CLI agent 入门 |
 

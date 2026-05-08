@@ -70,10 +70,8 @@
 | cli-agents-guide | ✅ | ✅ | ✅ |
 | mcp-skills-catalog | ✅ | ✅ | ✅ |
 | schema-design-cheatsheet | ✅ | ✅ | ✅ |
-| cookbook | ✅ | 🚧 | ✅ |
+| cookbook | ✅ | ✅ | ✅ |
 | style-guide | ✅ | ✅ | ✅ |
-
-🚧 = 還沒翻譯（Phase B Batch 3-4 會處理）
 
 ---
 
