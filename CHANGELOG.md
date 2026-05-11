@@ -9,6 +9,9 @@ Format: `YYYY-MM-DD · category · 1-line summary (commit-sha)`.
 ## 2026-05-11
 
 - **accessibility** · `resources/setup-guide.md` (3 langs) — addresses the dev-fluency assumption gap that subagent audit flagged across 5 non-dev branches. 5 sections covering API key registration, Python install, hello-world, Claude Code first auth, SKILL.md primer (`3c88b2b`). Plus 15 branch-top callouts on all 5 audience branches. `resources/README.{en,zh-Hans}.md` created for trilingual parity.
+- **accessibility** · README — promoted setup-guide pointer to top of Quick Start across all 3 langs (`ad47706`). Was buried in §Related Resources where non-dev visitors hit technical walls before discovering it.
+- **accessibility** · setup-guide opens with a 4-tier on-ramp (Web / Desktop / CLI / API) + official download URLs for Claude.ai, ChatGPT, Gemini, Le Chat, Claude Desktop, ChatGPT Desktop, LM Studio (`3c89952`). Replaces the abstract "decide two things" intro so non-dev readers see "just use claude.ai for free" as the first option, not "register API key → install Python".
+- **accessibility** · setup-guide adds a 3rd tier between Desktop and CLI: **IDE with built-in AI** (Cursor, Windsurf, Cline, Continue, Roo Code, Zed, GitHub Copilot) with download URLs (`7e14093`). Distinguishes "AI sidekick while you write code" from "agent runs autonomous task in terminal".
 
 ## 2026-05-10
 
