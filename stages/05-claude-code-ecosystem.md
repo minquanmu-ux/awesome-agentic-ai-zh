@@ -348,85 +348,48 @@ pip install mcp
 - **練習：plugin.json** — 把 5.3 寫的 SKILL.md 打包成一個 plugin
 - **練習：marketplace publish** — push 到 GitHub，用 `claude plugin marketplace add` 安裝
 
-### 精選 Projects
+### 常用 plugin 推薦（按用途分類）
 
-> 💡 **想看別人的 plugin 怎麼包**：[`resources/mcp-skills-catalog.md`](../resources/mcp-skills-catalog.md) 的開發協作 / 設計 / 監控分類底下不少都附 plugin 包裝（例如 `timescale/pg-aiguide` 同時是 MCP 跟 plugin）。下面這節保留的是「**marketplace 結構範本**」性質的 reference。
+> 不知道從哪裡開始裝 plugin？下面是 2025 後段 Anthropic 官方 + 社群高評價選擇。**安裝指令統一格式**：`/plugin install <plugin-name>@<marketplace-name>`（譬如 `/plugin install code-review@claude-plugins-official`）。
 
-#### [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) ⭐ 官方
+| 用途分類 | Plugin | Marketplace | 為什麼推薦 |
+|---|---|---|---|
+| **開發 workflow**<br>（多數開發者必裝） | `code-review` | claude-plugins-official | 官方 code review skill 集合、staged diff review + security check |
+| | `pr-review-toolkit` | claude-plugins-official | PR review 完整流程（comment、suggest、approve）|
+| | `commit-commands` | claude-plugins-official | git commit message 規範 + branching workflow |
+| | `feature-dev` | claude-plugins-official | 完整 feature 開發 cycle（spec → plan → implement → test） |
+| | `frontend-design` | claude-plugins-official | UI 設計 + responsive layout 輔助 |
+| **語言工具**<br>（依用的語言挑）| `typescript-lsp` / `pyright-lsp` / `rust-analyzer-lsp` / `gopls-lsp` 等 | claude-plugins-official | 各語言 LSP 整合、35 個語言 plugin 都在這 |
+| **plugin / skill 自建** | `skill-creator` | claude-plugins-official | 寫自己的 skill 時自動產生 frontmatter + 結構 |
+| | `plugin-dev` | claude-plugins-official | 寫自己的 plugin 時自動產生 `.claude-plugin/` 結構 |
+| | `mcp-server-dev` | claude-plugins-official | 寫自己的 MCP server 時的腳手架 |
+| | `hookify` | claude-plugins-official | 寫 hooks 規則的工具 |
+| **領域特化 — 工程團隊** | **`engineering` bundle** | knowledge-work-plugins | **10 個 skill**：architecture / code-review / debug / deploy-checklist / documentation / incident-response / standup / system-design / tech-debt / testing-strategy |
+| **領域特化 — 財務團隊** | **`finance` bundle** | knowledge-work-plugins | **8 個 skill**：audit-support / close-management / financial-statements / journal-entry-prep / reconciliation / sox-testing / variance-analysis |
+| **領域特化 — 其他**<br>（同 marketplace）| `sales` / `marketing` / `legal` / `human-resources` / `customer-support` / `data` / `design` / `operations` / `product-management` / `productivity` / `bio-research` 等 | knowledge-work-plugins | knowledge-work-plugins **18 個 vertical bundle**——挑跟你工作領域對應的那個 |
+| **外部整合**<br>（第三方服務） | `asana` / `github` / `gitlab` / `linear` / `firebase` / `playwright` / `terraform` / `discord` / `imessage` / `telegram` 等 | claude-plugins-official (external) | 整合常用 SaaS / 開發工具 |
+| **community 廣度** | （挑感興趣的 skill） | rohitg00/awesome-claude-code-toolkit | 社群最大 agents / skills / hooks / templates 目錄 |
 
-| 欄位 | 內容 |
-|---|---|
-| Stars | ★ 18k+ |
-| License | NOASSERTION（每個 plugin 獨立 license，請看各自目錄） |
-| 推薦度 | ⭐⭐⭐⭐⭐ |
+**建議入手順序**：
+1. 開發者必裝（5 個）：`code-review` + `pr-review-toolkit` + `commit-commands` + `feature-dev` + 一個你語言的 `*-lsp`
+2. 按工作領域加 bundle：工程團隊裝 `engineering`、財務裝 `finance`、其他類似
+3. 想寫自己的 skill / plugin → 裝 `skill-creator` + `plugin-dev`
+4. 想看更多 → 逛 `awesome-claude-code-toolkit` 或 [`resources/mcp-skills-catalog.md`](../resources/mcp-skills-catalog.md)
 
-**教什麼**：Anthropic 官方的 marketplace 範本——`.claude-plugin/marketplace.json` 標準 schema、`plugins/` 內含 plugin 本體、`external_plugins/` 引用外部 repo 的 plugin。
+### 精選 Projects（marketplace 範本參考）
 
-**適合誰**：寫自己的 marketplace 之前，這是最該對著抄的官方範本——「**marketplace.json 該長什麼樣**」直接看這個。
+> 💡 上面列的是「**裝哪些 plugin**」；下表列的是「**marketplace 怎麼寫**」——想自建 marketplace 的人才需要看。
 
-**備註**：除了 schema 之外，也是觀察 Anthropic 怎麼分類官方 plugin（chrome-devtools、deepwiki、code-research、jam 等）的好參考。
+| Marketplace | ⭐ | 適合誰 | 為什麼推薦 / 備註 |
+|---|---|---|---|
+| [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | ⭐⭐⭐⭐⭐ | 寫自己的 marketplace 前的官方範本 | 35 internal plugins + 15 external、`.claude-plugin/marketplace.json` 標準 schema、`plugins/` 含 plugin 本體 + `external_plugins/` 引用外部 repo。**marketplace.json 該長什麼樣直接看這個**（★ 18k+） |
+| [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins) | ⭐⭐⭐⭐⭐ | 想看「多 vertical bundle」型 marketplace | **18 個領域 plugin bundle**（finance / engineering / sales / legal / marketing / HR / customer-support / data / design / operations / product / productivity / bio-research / enterprise-search / pdf-viewer / small-business / cowork-plugin-management / partner-built）。Anthropic 自家 knowledge worker 場景範本 |
+| [obra/superpowers-marketplace](https://github.com/obra/superpowers-marketplace) | ⭐⭐⭐⭐ | 想做「我策展、別人寫」型 marketplace | **最簡 marketplace template**——repo 只有 `marketplace.json` + README、plugin 本體放外部 repo。curator-only pattern 最小範本（★ 900+、MIT）|
+| [trailofbits/skills-curated](https://github.com/trailofbits/skills-curated) | ⭐⭐⭐ | 在意供應鏈安全的 reviewer / 團隊 | Trail of Bits 維護的 **security-vetted** marketplace、每個 skill 都經審查、README 寫清楚標準。**示範 marketplace 不只是清單、也是信任機制**（★ 388、CC-BY-SA-4.0）|
+| [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit) | ⭐⭐⭐ | 想逛社群有什麼 | 社群最大 Claude Code agents / skills / hooks / templates 目錄。涵蓋 use case 廣 |
+| [anthropics/life-sciences](https://github.com/anthropics/life-sciences) | ⭐⭐⭐ | 要做特定領域 marketplace（醫療、金融、法律、教育等） | Anthropic 自家**領域特化 marketplace** 範例（生物 / 健康科學）、展示 `marketplace.json` 為單一 vertical 量身設計。**payload 偏生科 MCP server、marketplace.json 結構才是學習重點**（★ 331）|
 
----
-
-#### [obra/superpowers-marketplace](https://github.com/obra/superpowers-marketplace)
-
-| 欄位 | 內容 |
-|---|---|
-| Stars | ★ 900+ |
-| License | MIT |
-| 推薦度 | ⭐⭐⭐⭐ |
-
-**教什麼**：**最簡 marketplace template**——repo 裡只有 `.claude-plugin/marketplace.json` + README，plugin 本體放在外部 repo。展示「**curator-only marketplace**」（策展者只負責挑選、不打包原始碼）的最小形式。
-
-**適合誰**：要做「我策展、別人寫」型 marketplace 的人。比 anthropics/claude-plugins-official 更精簡，是最小可行範本。
-
----
-
-#### [trailofbits/skills-curated](https://github.com/trailofbits/skills-curated)
-
-| 欄位 | 內容 |
-|---|---|
-| Stars | ★ 388 |
-| License | CC-BY-SA-4.0 |
-| 推薦度 | ⭐⭐⭐ |
-
-**教什麼**：知名資安公司 Trail of Bits 維護的 curated marketplace，重點在 **supply-chain security**——每個 skill 都經過審查，README 寫清楚審核標準。
-
-**適合誰**：在意供應鏈信任、想學「**curator-vouches-for-safety**」這種模式的 reviewer 跟團隊。
-
-**備註**：規模小但意義大——示範 marketplace 不只是 skill 的清單，也可以是信任機制。
-
----
-
-#### [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit)
-
-| 欄位 | 內容 |
-|---|---|
-| 推薦度 | ⭐⭐⭐ |
-
-**教什麼**：社群中規模最大的 Claude Code agents、skills、hooks、templates 目錄之一。涵蓋的 use case 很廣。
-
-**適合誰**：跑完 練習 3 之後逛逛看外面有什麼。
-
----
-
-#### [anthropics/life-sciences](https://github.com/anthropics/life-sciences)（領域特化範例）
-
-| 欄位 | 內容 |
-|---|---|
-| Stars | ★ 331 |
-| License | NOASSERTION（marketplace 本身未提供 SPDX；裡面每個 MCP server 由各自 provider 授權） |
-| 推薦度 | ⭐⭐⭐ |
-
-**教什麼**：Anthropic 自己發的**領域特化 marketplace** 範例（針對生物 / 健康科學）——展示如何把 `marketplace.json` 為單一 vertical 量身設計，而不是塞通用清單。
-
-**適合誰**：要做特定領域 marketplace（醫療、金融、法律、教育等）的人，可以參考 Anthropic 自己怎麼處理。
-
-**備註**：payload 偏生科 MCP server，但 marketplace.json 結構本身才是學習重點。
-
----
-
-> **「如何發佈自己的 marketplace」教學還缺**——目前最可靠的是 [Anthropic 官方 plugin 文件](https://docs.claude.com/en/docs/claude-code/plugins)。社群有寫過好的 walkthrough 部落格 / repo？歡迎開 PR 補上。
+> 💡 **「如何發佈自己的 marketplace」walkthrough**：目前最可靠的是 [Anthropic 官方 plugin 文件](https://docs.claude.com/en/docs/claude-code/plugins)。社群有好的部落格 / repo？歡迎開 PR 補上。
 
 ---
 
