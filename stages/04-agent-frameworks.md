@@ -66,6 +66,28 @@
 
 ## 🎯 精選 Projects
 
+按用途分 5 類。**先看分類表挑入口、再點下面 detail block 看適合誰 / 教什麼**：
+
+| 分類 | Project | 推薦 | 為什麼推薦 |
+|---|---|---|---|
+| **Production 級**（複雜 multi-agent / 需要 audit）| [LangGraph](https://github.com/langchain-ai/langgraph) ⭐ | ⭐⭐⭐⭐⭐ | 圖式 orchestration + checkpointing + time-travel debug、企業採用率最高 |
+| | [microsoft/semantic-kernel](https://github.com/microsoft/semantic-kernel) | ⭐⭐⭐⭐ | C# / Python / Java 三語官方 SDK、企業環境 / .NET / Java 場景 |
+| | [agno-agi/agno](https://github.com/agno-agi/agno) | ⭐⭐⭐⭐ | multi-modal agent runtime + control plane（build + serve + monitor 一條龍）|
+| **快速雛形 / 多 agent**（role-based / handoff）| [CrewAI](https://github.com/crewAIInc/crewAI) ⭐ | ⭐⭐⭐⭐ | 學習曲線最低、~20 行寫完 crew、適合 researcher → writer → critic pipeline |
+| | [Microsoft AutoGen / AG2](https://github.com/microsoft/autogen) | ⭐⭐⭐⭐ | 對話式多 agent、group-chat / debate / peer review pattern 強 |
+| | [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) | ⭐⭐⭐⭐ | OpenAI 官方、agent hand-off + 結構化輸出 |
+| | [OpenAI Swarm](https://github.com/openai/swarm) | ⭐⭐⭐⭐ | OpenAI 自家最簡 handoff（~200 LOC）、教育用 canonical |
+| | [Strands Agents (AWS)](https://github.com/strands-agents/sdk-python) | ⭐⭐⭐⭐ | AWS / Bedrock-native、model-driven 設計、2025 新成員 |
+| **特殊路線**（CodeAct / typed / memory-first）| [Hugging Face Smolagents](https://github.com/huggingface/smolagents) | ⭐⭐⭐⭐ | CodeAct pattern 代表（agent 寫 Python code 當 action）、≤1000 LOC |
+| | [Pydantic AI](https://github.com/pydantic/pydantic-ai) | ⭐⭐⭐ | type-safe agent、structured output validation、Pydantic 團隊出 |
+| | [Letta (formerly MemGPT)](https://github.com/letta-ai/letta) | ⭐⭐⭐⭐ | memory-first multi-agent、OS-paging 概念、long session 場景 |
+| **特化** | [LlamaIndex Agents](https://github.com/run-llama/llama_index) | ⭐⭐⭐ | 跟 RAG 緊整合、文件密集型 agent |
+| | [agentscope-ai/agentscope](https://github.com/agentscope-ai/agentscope) | ⭐⭐⭐ | 多 agent 平台、視覺化 debug 工具 |
+| | [LangChain](https://github.com/langchain-ai/langchain) | ⭐⭐⭐ | 純 orchestration 改用 LangGraph、LangChain 適合 retrieval + chaining 黏合 |
+| **基礎設施**（不是 framework、跨 stage 用）| [BerriAI/litellm](https://github.com/BerriAI/litellm) | ⭐⭐⭐⭐ | provider-agnostic SDK + AI gateway、用 OpenAI 形狀 call 100+ LLM |
+
+---
+
 ### [LangGraph](https://github.com/langchain-ai/langgraph) ⭐ production 等級
 
 | 欄位 | 內容 |

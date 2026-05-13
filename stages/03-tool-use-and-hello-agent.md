@@ -339,6 +339,25 @@ messages.append({"role": "tool", "tool_call_id": tc.id,
 
 ## 🎯 精選 Projects
 
+按用途分 4 類。**先看分類表挑入口、再點下面 detail block 看適合誰 / 教什麼**：
+
+| 分類 | Project | 推薦 | 為什麼推薦 |
+|---|---|---|---|
+| **官方 cookbook**（先看這個）| [Anthropic — Tool Use Cookbook](https://github.com/anthropics/anthropic-cookbook/tree/main/tool_use) | ⭐⭐⭐⭐⭐ | 單工具 → 多工具 → parallel → structured output 全部 notebook |
+| | [Anthropic — Quickstarts](https://github.com/anthropics/anthropic-quickstarts) | ⭐⭐⭐⭐⭐ | 3 個 deploy-ready agent 範本（financial / customer-support / computer-use） |
+| | [Anthropic — Building Effective Agents（部落格）](https://www.anthropic.com/engineering/building-effective-agents) | ⭐⭐⭐⭐⭐ | 什麼時候該用 agent / 常見 pattern / 容易踩的坑、Stage 4 前必讀 |
+| **從零實作 ReAct**（理解原理）| [pguso/ai-agents-from-scratch](https://github.com/pguso/ai-agents-from-scratch) | ⭐⭐⭐⭐⭐ | 用本機 LLM 從零打造 agent、zero framework |
+| | [arunpshankar/react-from-scratch](https://github.com/arunpshankar/react-from-scratch) | ⭐⭐⭐⭐ | ReAct 變體 + Reflection + Self-consistency、Gemini 最佳化 |
+| | [mattambrogi/agent-implementation](https://github.com/mattambrogi/agent-implementation) | ⭐⭐⭐ | ~150 行最精簡 ReAct、⚠️ 已停滯（2024-01）但可逐行讀 |
+| | [lsdefine/GenericAgent](https://github.com/lsdefine/GenericAgent) | ⭐⭐⭐⭐ | 自我演化 agent framework、~3K 行精簡完整、支援 Claude / Gemini / Kimi |
+| **CodeAct 路線**（agent 寫程式碼當 action）| [HuggingFace Smolagents](https://github.com/huggingface/smolagents) | ⭐⭐⭐⭐ | ≤1000 LOC、CodeAct pattern 代表 |
+| | [QuantaLogic/quantalogic](https://github.com/quantalogic/quantalogic) | ⭐⭐⭐ | 另一條 CodeAct 路線、跟 JSON tool 路線對照 |
+| **中文章節式深度教材**（chapter-length）| [datawhalechina/hello-agents](https://github.com/datawhalechina/hello-agents) ⭐ 本 stage 推薦 | ⭐⭐⭐⭐⭐ | **16 種能力**含 tool use / ReAct / context engineering / sub-agents / circuit breaker / observability。中文圈最完整、章節式 |
+| | [HelloAgents (jjyaoao)](https://github.com/jjyaoao/HelloAgents) `learn_version` | ⭐⭐⭐⭐⭐ | 上面教材的 code repo、`learn_version` 分支對齊章節 |
+| **Framework 對照**（看 framework 怎麼藏掉 ReAct loop）| [LangChain — ReAct Agent Template](https://github.com/langchain-ai/react-agent) | ⭐⭐⭐ | 練習 3 自己寫完後、再來看 framework 抽象做了什麼 |
+
+---
+
 ### [Anthropic — Tool Use Cookbook](https://github.com/anthropics/anthropic-cookbook/tree/main/tool_use)
 
 | 欄位 | 內容 |

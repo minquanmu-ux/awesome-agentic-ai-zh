@@ -44,6 +44,22 @@
 
 ## 🎯 精選 Projects
 
+本 stage 已按用途分 7 個子分類。**先看這張總覽表挑入口、再下捲看 detail block**：
+
+| 分類 | 代表 projects | 該看什麼 |
+|---|---|---|
+| **Multi-Agent Orchestration** | AutoGen / CrewAI / LangGraph | Stage 4 已介紹、production 場景再回頭看 GroupChat / hierarchical / state machine 用法 |
+| **Evaluation Frameworks** | promptfoo ⭐ / lm-evaluation-harness / openai/evals | 寫 eval set、跑 regression、CI 整合 |
+| **Observability** | Langfuse ⭐ / LangSmith / Helicone / W&B Weave | trace + cost + latency、production 必裝 |
+| **Anthropic SDK 進階** | anthropic-sdk-python / **claude-agent-sdk-python** ⭐ / cookbook | prompt caching / batch API / files / **Claude Code 內部運作**（agent SDK = 看內部原始碼）|
+| **Deployment** | BentoML / LangServe / vLLM / LLaMA-Factory | 上 production server / GPU inference / fine-tune |
+| **本地 deploy 中文教材** | datawhalechina/self-llm | 中文圈 self-host LLM 最完整指南 |
+| **Multi-Agent 案例研究** | MetaGPT / ChatDev / SWE-agent | 看「真實 multi-agent 工程怎麼設計」、不是 framework 而是 case study |
+
+> 🌳 **Claude 原生 subagent 機制**（不用 framework 也能 multi-agent）見 [Stage 5.5](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制)。本 stage 重 framework / production；Stage 5.5 重 markdown-based subagent 編排。
+
+---
+
 ### Multi-Agent Orchestration
 
 #### [microsoft/autogen](https://github.com/microsoft/autogen)

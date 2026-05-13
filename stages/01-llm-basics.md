@@ -394,6 +394,30 @@ print(f"💡 跑這次完全沒花錢（除了你的電力）")
 
 ## 🎯 精選 Projects
 
+按用途分 5 類。**先看分類表挑入口、再點下面 detail block 看適合誰 / 教什麼**：
+
+| 分類 | Project | 推薦 | 為什麼推薦 |
+|---|---|---|---|
+| **官方 cookbook / 入門** | [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook) | ⭐⭐⭐⭐⭐ | Claude API 全功能 notebook、tool use / batch / prompt cache 都有 |
+| | [Anthropic Courses](https://github.com/anthropics/courses) | ⭐⭐⭐⭐⭐ | Anthropic 自家完整 5 課程、prompt engineering 章節最強 |
+| | [OpenAI Cookbook](https://github.com/openai/openai-cookbook) | ⭐⭐⭐⭐⭐ | OpenAI 全功能 notebook、本 stage 多個練習有對應實作 |
+| | [Anthropic Claude API Quickstart](https://docs.anthropic.com/en/docs/get-started) | ⭐⭐⭐⭐ | 官方 5 分鐘 quickstart |
+| **中文教材**（章節式） | [datawhalechina/happy-llm](https://github.com/datawhalechina/happy-llm) | ⭐⭐⭐⭐⭐ | LLM 原理 + 應用、中文最完整入門 |
+| | [datawhalechina/llm-universe](https://github.com/datawhalechina/llm-universe) | ⭐⭐⭐⭐⭐ | LLM 應用開發實戰、章節式 |
+| | [datawhalechina/llm-cookbook](https://github.com/datawhalechina/llm-cookbook) | ⭐⭐⭐⭐ | 吳恩達 LLM 課程中文翻譯 |
+| | [jingyaogong/minimind](https://github.com/jingyaogong/minimind) | ⭐⭐⭐⭐ | 從零訓練 mini LLM、26M 參數 |
+| **英文 course**（系統式） | [HuggingFace — LLM Course](https://huggingface.co/learn/llm-course) | ⭐⭐⭐⭐⭐ | 含 transformer 原理 + 應用 |
+| | [LangChain Academy](https://academy.langchain.com/) | ⭐⭐⭐⭐ | LangChain 官方課程、免費 |
+| **本地端執行**（不付 API 費）| [ollama/ollama](https://github.com/ollama/ollama) | ⭐⭐⭐⭐⭐ | 本 repo Path A 默認、OpenAI-compatible |
+| | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) | ⭐⭐⭐⭐⭐ | C++ inference engine、Ollama 底層 |
+| | [mudler/LocalAI](https://github.com/mudler/LocalAI) | ⭐⭐⭐⭐ | self-hosted OpenAI-compat API server |
+| | [ml-explore/mlx](https://github.com/ml-explore/mlx) | ⭐⭐⭐⭐ | Apple Silicon 專用、Metal 加速 |
+| **從零打造**（理解原理）| [karpathy — Let's build GPT from scratch](https://www.youtube.com/watch?v=kCc8FmEb1nY) | ⭐⭐⭐⭐⭐ | Karpathy 2h video、最清楚的 transformer 教學 |
+| | [rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch) | ⭐⭐⭐⭐⭐ | 書搭 code、從零實作 GPT-2 |
+| | [karpathy/LLM101n](https://github.com/karpathy/LLM101n) | ⭐⭐ | ⚠️ 已封存（大綱、未完）、留作 reference |
+
+---
+
 ### [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook)
 
 | 欄位 | 內容 |
