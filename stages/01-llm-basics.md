@@ -34,56 +34,240 @@
 
 ## 🛠 動手練習（必做練習，不是看過就好）
 
-### 練習：LLM API
+### 練習 1：LLM API（hello world）
 五行 Python 呼叫 Claude API 並印出回應。
 
+<details>
+<summary>📋 <b>起手碼</b>（複製到 <code>practice_1.py</code>、<code>python practice_1.py</code> 就跑）</summary>
+
 ```python
-from anthropic import Anthropic
-client = Anthropic()
+# 需要：pip install anthropic
+# 環境變數：export ANTHROPIC_API_KEY=sk-ant-...
+import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+import anthropic
+
+client = anthropic.Anthropic()
 msg = client.messages.create(
-    model="claude-sonnet-4-5",
+    model="claude-haiku-4-5",  # haiku 最便宜；換 sonnet 改這行
     max_tokens=100,
-    messages=[{"role": "user", "content": "Hello, who are you?"}]
+    messages=[{"role": "user", "content": "用一句話自我介紹。"}],
 )
-print(msg.content[0].text)
+
+# === 自我驗證 ===
+text = msg.content[0].text
+print("回應：", text)
+print("usage:", msg.usage)
+
+assert msg.stop_reason in ("end_turn", "max_tokens"), f"非預期 stop_reason: {msg.stop_reason}"
+assert len(text) > 0, "回應不應為空"
+assert msg.usage.input_tokens > 0 and msg.usage.output_tokens > 0, "token 數應 > 0"
+print("✅ 練習 1 通過 — 你已成功打通 Anthropic API")
 ```
 
-### 練習：Tokens
+**預期輸出**（樣本）：
+```
+回應：我是 Claude，一個由 Anthropic 訓練的 AI 助理...
+usage: Usage(input_tokens=18, output_tokens=42, ...)
+✅ 練習 1 通過 — 你已成功打通 Anthropic API
+```
+
+</details>
+
+### 練習 2：Tokens
 同一個 prompt 跑 100 次，觀察 token 數的變化。
-- 注意：temperature ≠ 0 會產生變動
+- 注意：`temperature ≠ 0` 會產生變動
 - 注意：同一句話的英文 vs 中文 token 數差異
 
-### 練習：Pricing
+<details>
+<summary>📋 <b>起手碼</b>（複製到 <code>practice_2.py</code>）</summary>
+
+```python
+# 需要：pip install anthropic
+import sys, statistics
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+import anthropic
+
+client = anthropic.Anthropic()
+
+PROMPTS = {
+    "中文": "用一句話描述一隻貓在做什麼。",
+    "English": "Describe in one sentence what a cat is doing.",
+}
+
+N = 20  # 跑 100 太貴、先 20。確認 OK 再加大
+for label, prompt in PROMPTS.items():
+    output_tokens = []
+    for _ in range(N):
+        msg = client.messages.create(
+            model="claude-haiku-4-5",
+            max_tokens=80,
+            temperature=1.0,  # 故意拉高、看 variance
+            messages=[{"role": "user", "content": prompt}],
+        )
+        output_tokens.append(msg.usage.output_tokens)
+    print(f"\n[{label}] prompt: {prompt}")
+    print(f"  input tokens: {msg.usage.input_tokens}")
+    print(f"  output tokens — min={min(output_tokens)} max={max(output_tokens)} mean={statistics.mean(output_tokens):.1f} stdev={statistics.stdev(output_tokens):.1f}")
+
+# === 自我驗證 ===
+# 期望：temperature=1.0 下、stdev 應該 > 0（每次答案不一樣）
+print("\n✅ 練習 2 通過 — 觀察到 temperature 對 output token 的 variance")
+print("💡 中文 prompt 通常 input tokens 比 English 多 (中文一個字常 = 2 tokens)")
+```
+
+**預期輸出**（樣本）：
+```
+[中文] prompt: 用一句話描述一隻貓在做什麼。
+  input tokens: 26
+  output tokens — min=15 max=42 mean=28.4 stdev=7.2
+
+[English] prompt: Describe in one sentence what a cat is doing.
+  input tokens: 17
+  output tokens — min=12 max=38 mean=22.1 stdev=6.8
+```
+
+</details>
+
+### 練習 3：Pricing
 算出你的 hello-world prompt 跑 1000 次的實際美金成本。用 Anthropic 的 pricing page + SDK 的 `usage` 欄位來算 token。
 
-### 練習：Cross-Provider 比較
+<details>
+<summary>📋 <b>起手碼</b>（複製到 <code>practice_3.py</code>）</summary>
+
+```python
+# 需要：pip install anthropic
+import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+import anthropic
+
+# Anthropic 2026 Q1 公開計價（每 1M token、USD）— 跑前對照 https://www.anthropic.com/pricing
+PRICING = {
+    "claude-haiku-4-5":   {"input": 1.00, "output":  5.00},
+    "claude-sonnet-4-5":  {"input": 3.00, "output": 15.00},
+    "claude-opus-4-5":    {"input": 15.0, "output": 75.00},
+}
+
+client = anthropic.Anthropic()
+MODEL = "claude-haiku-4-5"
+
+# 跑一次 hello world、量 token
+msg = client.messages.create(
+    model=MODEL,
+    max_tokens=200,
+    messages=[{"role": "user", "content": "你好！自我介紹一下。"}],
+)
+in_tok = msg.usage.input_tokens
+out_tok = msg.usage.output_tokens
+rates = PRICING[MODEL]
+
+# 算單次跟 1000 次成本
+cost_one = (in_tok * rates["input"] + out_tok * rates["output"]) / 1_000_000
+cost_1000 = cost_one * 1000
+
+print(f"model: {MODEL}")
+print(f"single call: input={in_tok} output={out_tok} → ${cost_one:.6f}")
+print(f"1000 calls:   ${cost_1000:.4f}")
+
+# 對照其他 model 的 1000 次成本（同樣 token 數）
+print("\n換算到其他 model 同樣 token 量：")
+for name, r in PRICING.items():
+    c = (in_tok * r["input"] + out_tok * r["output"]) / 1_000_000 * 1000
+    print(f"  {name:<22} 1000 calls: ${c:.4f}")
+
+# === 自我驗證 ===
+assert cost_1000 > 0, "成本應 > 0"
+assert cost_1000 < 10, f"1000 次 haiku hello world 不應該 > $10、實際 ${cost_1000:.4f}"
+print(f"\n✅ 練習 3 通過 — 你已能用 usage + pricing 算實際成本")
+```
+
+**預期輸出**（樣本、實際 $ 依模型計價而定）：
+```
+model: claude-haiku-4-5
+single call: input=14 output=48 → $0.000254
+1000 calls:   $0.2540
+
+換算到其他 model 同樣 token 量：
+  claude-haiku-4-5       1000 calls: $0.2540
+  claude-sonnet-4-5      1000 calls: $0.7620
+  claude-opus-4-5        1000 calls: $3.8100
+```
+
+</details>
+
+### 練習 4：Cross-Provider 比較
 同一個 prompt 同時送給 Claude、GPT、Gemini，比較三家的回應差異。觀察「同一句話為什麼產生不同答案」——回答風格、長度、判斷取捨都不一樣。建議用 OpenAI、Anthropic、Google 三家 SDK 各一段程式呼叫。
 
-### 練習：Error Handling
+→ **完整可跑版** → [`examples/stage-1/04-cross-provider/`](../examples/stage-1/04-cross-provider/)（含三家 SDK 並行呼叫 + table 對照、缺哪家 key 就 skip 哪家）
+
+### 練習 5：Error Handling
 故意觸發錯誤情境並寫 retry：
 - API key 錯誤 → 看怎麼 raise
 - prompt 超長 → context window 滿了會發生什麼
 - 網路斷掉 → 寫一個有 exponential backoff 的 retry wrapper
+
 這是後面 Stage 3-7 寫 production agent 一定會用到的基礎。
 
-### 練習：Local LLM
+→ **完整可跑版** → [`examples/stage-1/05-error-handling/`](../examples/stage-1/05-error-handling/)（含 mock-based test、不用真的斷網就能驗證 retry 邏輯）
+
+### 練習 6：Local LLM
 **不付 API 費用、跑在自己電腦上**：用 Ollama 下載一個小模型（建議 `llama3.2:3b` 或 `qwen2.5:3b`），用 OpenAI-相容 API 呼叫它。
+
 ```bash
-# 裝 Ollama: https://ollama.com
+# 1. 裝 Ollama: https://ollama.com
 ollama pull qwen2.5:3b
 ollama serve  # 預設 port 11434
 ```
-然後從 Python：
+
+<details>
+<summary>📋 <b>起手碼</b>（複製到 <code>practice_6.py</code>）</summary>
+
 ```python
+# 需要：pip install openai
+# 前置：Ollama 已 serve、qwen2.5:3b 已 pull
+import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 from openai import OpenAI
-client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
+
+client = OpenAI(
+    base_url="http://localhost:11434/v1",
+    api_key="ollama",  # Ollama 不檢查、隨便填
+)
+
 r = client.chat.completions.create(
     model="qwen2.5:3b",
-    messages=[{"role":"user","content":"用 3 句話介紹什麼是 ReAct"}]
+    messages=[{"role": "user", "content": "用 3 句話介紹什麼是 ReAct。"}],
 )
-print(r.choices[0].message.content)
+
+text = r.choices[0].message.content
+print("回應：", text)
+
+# === 自我驗證 ===
+assert len(text) > 10, "回應太短、Ollama 可能沒跑起來"
+print(f"✅ 練習 6 通過 — 你的本機 Ollama 已能透過 OpenAI-compatible API 呼叫")
+print(f"💡 跑這次完全沒花錢（除了你的電力）")
 ```
+
+**預期輸出**（樣本、實際內容因 model 而異）：
+```
+回應：ReAct 是一種讓 AI 結合「推理」和「行動」的方法...
+✅ 練習 6 通過 — 你的本機 Ollama 已能透過 OpenAI-compatible API 呼叫
+💡 跑這次完全沒花錢（除了你的電力）
+```
+
 **為什麼要做**：學會跑本地 LLM 後，後面 Stage 3-6 的實驗都不會被 API 費用卡住；隱私敏感場景也能 offline。
+
+**沒裝 Ollama 也想跑**：把 `base_url` 換成 [LM Studio](https://lmstudio.ai) (`http://localhost:1234/v1`) 或 [vLLM](https://github.com/vllm-project/vllm) endpoint、API 介面一樣。
+
+</details>
 
 ## 🎯 精選 Projects
 
