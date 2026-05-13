@@ -38,7 +38,7 @@ prompt: 用 1-2 句話解釋 AGI 跟 narrow AI 的差別。
 [Anthropic / claude-haiku-4-5]  latency=823ms  in=21 out=58
 AGI（通用人工智慧）能跨領域學習與解題；narrow AI 只擅長單一任務...
 
-[OpenAI / gpt-4o-mini]  latency=612ms  in=24 out=49
+[OpenAI / gpt-5-mini]  latency=612ms  in=24 out=49
 Narrow AI 專精於特定任務（如下棋、辨識）、AGI 則具備...
 
 ✅ 練習 4 通過 — 收到 2 家 provider 回應、可比較風格 / 長度 / 成本
