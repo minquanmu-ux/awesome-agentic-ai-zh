@@ -305,37 +305,31 @@ Reflexion 是 **prompt-based reflection**——LLM 在 inference 時自己改自
 
 ### Path 2：Trained-in reasoning / reflection（2024-2026 大轉折）
 
-OpenAI **o1**（2024-09）開啟、DeepSeek **R1**（2025-01）開源化、2026 演進到 **R2 / V4 / GPT-5.5 / Claude Opus 4.7 / Gemini 3.1 Pro**——把「step-by-step thinking + 自我糾錯」**訓練進 model 權重**、inference 時自動展開長 reasoning chain（thinking tokens）。**這是 2024-2026 LLM 最大典範轉移**、目前所有 frontier model 都走這路。
+OpenAI **o1**（2024-09）開啟、DeepSeek **R1**（2025-01）開源化——把「step-by-step thinking + 自我糾錯」**訓練進 model 權重**、inference 時自動展開長 reasoning chain（thinking tokens）。**這是 2024-2026 LLM 最大典範轉移**、目前所有 frontier model 都走這路。下表只列**當前（2026-05）frontier**——歷史前身（o1 / R1 / Sonnet 4.5 / Gemini 2.5）省略、想看 lineage 看每家發布日列。
 
-⭐ **年份**標記 = 2025-2026 最新作品。
-
-| Model | 來源 | 特色 | 連結 |
+| Model | 來源 / 發布 | 特色 | 連結 |
 |---|---|---|---|
-| **o1 / o1-pro / o3** | OpenAI 2024-09 ~ 2025 | 閉源、inference-time scaling 始祖、隱藏 reasoning chain | [OpenAI o1](https://openai.com/o1/) |
-| **GPT-5 / GPT-5.4 / GPT-5.5** | OpenAI 2025-08 ~ 2026-04 | 閉源、reasoning + chat 合併、Thinking budget API、agent 能力強化 | [OpenAI](https://openai.com/) ⭐ **2026** |
-| **DeepSeek-R1** | DeepSeek 2025-01 | 開源 671B MoE、訓練法公開（純 RL、不靠 SFT 起步） | [paper](https://arxiv.org/abs/2501.12948) ⭐ **2025** |
-| **DeepSeek-R1-Distill** | DeepSeek 2025-01 | R1 蒸餾到 1.5B-70B、家用 GPU 可跑 | HuggingFace |
-| **DeepSeek-R2** | DeepSeek 2026-03 | 開源 RL+CoT、MIT license、AIME 2025 **79.7%**（R1 為 39.4%）、GPQA Diamond 72.0% | [DeepSeek guide 2026](https://deepseek.ai/blog/deepseek-guide-2026) ⭐ **2026-03** |
-| **DeepSeek-V4 / V4-Pro / V4-Flash** | DeepSeek 2026-04 preview | agent-focused 訓練、推理 + 工具使用 + 知識處理整合 | [HF DeepSeek-V4-Pro](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)、[CNBC report](https://www.cnbc.com/2026/04/24/deepseek-v4-llm-preview-open-source-ai-competition-china.html) ⭐ **2026-04** |
-| **Claude Sonnet 4.5 / Opus 4.5 / Opus 4.7** | Anthropic 2025-2026 | 閉源、可控 thinking budget（API 參數可調）、SWE-bench / Terminal-bench 領先 | [Anthropic extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) ⭐ **2026** |
-| **Gemini 2.5 Thinking → Gemini 3 / 3.1 Pro** | Google 2025-2026 | 閉源、可看 thinking trace、GPQA Diamond **94.3%**、價格 / 速度 / multimodal 領先 | [Gemini API](https://ai.google.dev/gemini-api/docs/thinking) ⭐ **2026-02** |
-| **QwQ-32B / QvQ-72B** | Alibaba Qwen 2024-11 ~ 2026 | 開源 reasoning model、Apache 2.0、QvQ 是視覺 reasoning 版本 | [QwQ blog](https://qwenlm.github.io/blog/qwq-32b-preview/) |
-| **Marco-o1** | Alibaba 2024-11 | 開源、ToT + MCTS 整合 | [paper](https://arxiv.org/abs/2411.14405) |
+| **GPT-5.5** | OpenAI 2026-04（前身：o1 2024-09 → o3 → GPT-5 2025-08 → 5.4 2026-03）| 閉源、reasoning + chat 合併、Thinking budget API、agent 能力強化 | [OpenAI](https://openai.com/) |
+| **Claude Opus 4.7** | Anthropic 2026（前身：Sonnet 4.5 / Opus 4.5）| 閉源、可控 thinking budget（API 參數）、**SWE-bench / Terminal-bench 領先** | [Anthropic extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) |
+| **Gemini 3.1 Pro** | Google 2026-02（前身：Gemini 2.5 Thinking 2025、Gemini 3 2025-11）| 閉源、可看 thinking trace、**GPQA Diamond 94.3%**、價格 / 速度 / multimodal 領先 | [Gemini API](https://ai.google.dev/gemini-api/docs/thinking) |
+| **DeepSeek-R2** | DeepSeek 2026-03（前身：R1 2025-01）| 開源 RL+CoT、**MIT license**、AIME 2025 **79.7%**（R1 為 39.4%）、GPQA Diamond 72.0% | [DeepSeek guide 2026](https://deepseek.ai/blog/deepseek-guide-2026)、[R1 paper（方法 baseline）](https://arxiv.org/abs/2501.12948) |
+| **DeepSeek-V4 / V4-Pro / V4-Flash** | DeepSeek 2026-04 preview | 開源、agent-focused 訓練、推理 + 工具使用 + 知識處理整合 | [HF DeepSeek-V4-Pro](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)、[CNBC report](https://www.cnbc.com/2026/04/24/deepseek-v4-llm-preview-open-source-ai-competition-china.html) |
+| **QwQ-32B / QvQ-72B** | Alibaba Qwen 2024-11 ~ 2026 | 開源 **Apache 2.0**、32B 在小尺寸 reasoning 仍是首選、QvQ 是視覺版本 | [QwQ blog](https://qwenlm.github.io/blog/qwq-32b-preview/) |
 
 ### 兩條路怎麼選
 
 | 你的情況 | 建議 |
 |---|---|
 | 用一般 chat model base、想加 reasoning | Path 1（prompt-based）—— ToT / Self-Consistency / CoVe |
-| 預算 / latency 允許、要最強 reasoning | Path 2 —— **GPT-5.5 / Claude Opus 4.7 / Gemini 3.1 Pro / DeepSeek-R2** 直接用 |
-| 想自己 fine-tune reasoning model | Path 2 —— 讀 R1 / R2 paper、用 R1-Distill 起步 |
-| 想 on-device / 預算極緊 | **QwQ-32B**（Apache 2.0）或 **R1-Distill-1.5B/7B** |
+| 預算 / latency 允許、要最強 reasoning | Path 2 —— **GPT-5.5 / Opus 4.7 / Gemini 3.1 Pro / R2** 任挑一個 |
+| 想自己 fine-tune reasoning model | Path 2 —— 讀 R1 + R2 paper、從 R1-Distill 系列起步 |
+| 想 on-device / 預算極緊 | **QwQ-32B**（Apache 2.0）或 R 系列 distill |
 | Multi-agent debate / critic 場景 | Path 1（CRITIC / debate）+ [Stage 7 §multi-agent](07-multi-agent-production.md) |
 
 > 💡 **2025-2026 觀察**：
-> - reasoning model（o1 → R2 → GPT-5.5 → Opus 4.7）把 Reflexion 那套吞進權重——但 **prompt-based reflection 沒被取代**：agent loop（控制反思時機 / 內容）+ multi-agent debate 還是必須的
-> - **2026 開源已追上閉源**——R2 的 AIME 2025 達 79.7%、跟 o1 / Gemini 3.1 Pro 同檔次、且 MIT license
-> - **agent capability 變主訴求**——DeepSeek V4 / Claude Opus 4.5+ 都把 agent-as-product（SWE-bench / Terminal-bench / tool use）當 headline benchmark、單純 reasoning 已經不夠賣
+> - reasoning model 把 Reflexion 那套吞進權重——但 **prompt-based reflection 沒被取代**：agent loop（控制反思時機 / 內容）+ multi-agent debate 還是必須的
+> - **2026 開源已追上閉源**——R2 的 AIME 2025 達 79.7%、跟 GPT-5.5 / Gemini 3.1 Pro 同檔次、且 MIT license
+> - **agent capability 變主訴求**——V4 / Opus 4.7 都把 agent-as-product（SWE-bench / Terminal-bench / tool use）當 headline benchmark、單純 reasoning 已經不夠賣
 > - 兩條路會長期共存、production agent 兩個都用
 
 ## 🚀 進階 RAG 技巧（跑完基本 RAG 之後再看）
