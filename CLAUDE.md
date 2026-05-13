@@ -77,7 +77,10 @@ If unsure, ask the user to run `ollama list` and verify.
 | Stage 1 folder `05-error-handling` | ✅ Phase 3 done (2026-05-12) — openai SDK exceptions + same retry wrapper, trilingual READMEs |
 | Stage 3 doc inline simplified examples (練習 2-6) | ✅ Done (2026-05-12) — 5 new `<details>` blocks added inline (Path A 8-15 line cores), trilingual mirror, zh-Hans Trad-char drift fixed at lines 44/47/77/110/152 |
 | `examples/stage-5/tool-calling-tutor/` skill | ✅ Done (2026-05-12) — installable Claude Code skill (frontmatter + 5-step body), 3 references (debug-flowchart / schema-evolution / sdk-diff), evals.json with 5 cases, trilingual READMEs + translations. Dual purpose: learner-aid + Stage 5 §5.3 meta-example. Cross-referenced from stages/03 + stages/05 |
-| Stage 4/5/6/7 + Track A (38 exercises) | ⚪ Pending T3+ — full new write, Ollama-default by design |
+| Stage 4 (5 exercises) | ✅ Done (2026-05-12) — ex1 LangGraph+CrewAI comparison, ex2 CrewAI multi-agent roles, ex3 LangGraph branching+HITL, ex4 Smolagents CodeAct, ex5 Pydantic AI typed output. 41 files, 5 commits, dual-path everywhere |
+| Stage 6 (5 exercises) | ✅ Done (2026-05-12) — ex1 embeddings, ex2 ChromaDB+keyword-vs-semantic, ex3 chunking comparison, ex4 full RAG pipeline, ex5 long-term memory. 40 files, 5 commits |
+| Stage 7 (5 exercises) | ✅ Done (2026-05-12) — ex1 multi-agent debate, ex2 eval pipeline, ex3 observability primitives, ex4 streaming+prompt caching, ex5 FastAPI+Docker deploy. 41 files (incl. Dockerfile), 5 commits |
+| Stage 5 (11 sub-exercises, non-Python) + Track A1-A3 (12 CLI exercises) | ⚪ Pending — different shape (bash/MCP/markdown not OpenAI SDK), framing decisions deferred to next session |
 | `examples/README` LLM list + budget table | ✅ Done (3 langs) |
 | Per-stage budget callouts | ✅ Done for Stage 1+2+3 (3 langs each) |
 
