@@ -10,7 +10,7 @@
 
 ### 🤖 AI Agent 學習地圖 — 從基本 LLM 概念到自己打造多 agent 系統
 
-<p><em><b>學習路線圖 + 145+ 資源 curation + 簡單 illustrative 案例</b><br/>結構化 7 階段、從「LLM 是什麼、token 怎麼算」走到 multi-agent 編排、本地部署</em></p>
+<p><em><b>學習路線圖 + 145+ 資源 curation + 簡單 illustrative 案例</b><br/>結構化 8 階段、從「LLM 是什麼、token 怎麼算」走到 multi-agent 編排、Computer Use / Browser Use / Sandbox</em></p>
 
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat)](LICENSE)
 [![繁中](https://img.shields.io/badge/語言-繁體中文-red?style=flat)](README.md)
@@ -31,7 +31,7 @@
 
 | 核心 | 做什麼 | 規模 |
 |---|---|---|
-| **學習路線圖** | 把網路散落的高品質專案、教材、必修閱讀，按**從零開始、循序漸進**整理成 **7 個階段** + 2 條學習路線 + 5 條延伸路徑 | 7 stages、2 tracks |
+| **學習路線圖** | 把網路散落的高品質專案、教材、必修閱讀，按**從零開始、循序漸進**整理成 **8 個階段**（含 Stage 5 + Stage 8 兩個共用 hub）+ 2 條學習路線 + 5 條延伸路徑 | 8 stages、2 tracks |
 | **資源 curation** | 每階段精選 **145+** 個 project（含星等、適合誰、教什麼、怎麼跑），加上中文社群 MCP / Skill 完整 catalog | 145+ projects、62 MCP/Skill |
 | **簡單 illustrative 案例** | 每階段附 1-5 個**基礎練習**（70-150 行 starter + dual-path Ollama/Anthropic SDK 對照 + mock-based test） | 27 個練習 folder |
 
@@ -82,7 +82,7 @@ cd awesome-agentic-ai-zh
 - 🌏 **中文 / 英文雙語** — 繁中為主、英文版完整對照
 - 🎓 **不只「框架」、還有「Claude Code 生態」** — MCP / Skills / Plugins / SDK 完整堆疊
 - 🔬 **5 條依使用者分流的延伸路線** — 研究員 / 開發者 / 老師 / 知識工作者 / **日常使用者**
-- ⏱️ **預估時程寫清楚** — 主幹最少 14-19 週、現實 5-6 個月（每週 5-8 hr）
+- ⏱️ **預估時程寫清楚** — Track A 8-10 週 / Track B 主幹最少 16-22 週、現實 5-7 個月（每週 5-8 hr）
 
 ---
 
@@ -168,8 +168,9 @@ cd awesome-agentic-ai-zh
 
 - **Part 1（Stage 0-2）：基礎與 LLM 入門** — Python / git / API、什麼是 LLM、怎麼設計 prompt
 - **Part 2（Stage 3-4）：建構你的 Agent** — 從 tool use 進化到 agent，學主流 framework
-- **Part 3（Stage 5）：Claude Code 生態系** — MCP / Skills / Plugins，這是整條路線的核心
-- **Part 4（Stage 6-7）：進階整合** — memory / RAG / multi-agent 協作
+- **Part 3（Stage 5）🔄 共用 hub** — Claude Code 生態系（MCP / Skills / Plugins / Subagents、Track A + B 都會用到）
+- **Part 4（Stage 6-7）：進階整合** — memory / RAG / multi-agent 協作 / harness engineering
+- **Part 5（Stage 8）🔄 共用 hub** — Agent Interfaces（Computer Use / Browser Use / Code Sandbox、2024-2026 frontier、Track A + B 都會用到）
 
 > 🔭 **三層概念進化**：**prompt engineering**（Stage 2、單一 prompt 怎麼寫）→ **context engineering**（Stage 3 之後、怎麼動態組 system prompt + memory + retrieved chunks + tool schema）→ **harness engineering**（Stage 7、agent loop / eval / observability / deploy 整套包成 production system）。3 個術語對應 3 個 phase、不必另外找資源。詳見 [`stages/02-prompt-engineering.md#-進階context-engineering不是-prompt-engineering-了`](stages/02-prompt-engineering.md) 跟 [`stages/07-multi-agent-production.md`](stages/07-multi-agent-production.md) 必修閱讀 §5+6。
 
@@ -288,7 +289,7 @@ PR 流程跟 style 規範請看 [CONTRIBUTING.md](CONTRIBUTING.md) 跟 [resource
   author = {Chiou, Wenyu},
   year   = {2026},
   url    = {https://github.com/WenyuChiou/awesome-agentic-ai-zh},
-  note   = {7-stage learning path from prerequisites to advanced multi-agent systems, with curated projects + hello-X demos. Bilingual (zh-TW / English).}
+  note   = {8-stage learning path from prerequisites to Agent Interfaces (Computer Use / Browser Use / Sandbox), with curated projects + hello-X demos. Bilingual (zh-TW / English).}
 }
 ```
 

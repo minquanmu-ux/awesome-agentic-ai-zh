@@ -45,7 +45,7 @@
 - **2025-2026**：OpenAI（Atlas + Codex desktop）/ Google（Gemini in Chrome）全進場 → 主流化
 - **2026-05**：OSWorld benchmark 達 **76.26%**（superhuman vs 72% human baseline）→ 從研究 curiosity 變 production reality
 
-**沒這個 stage 的 curriculum gap**：學完 Stage 7 你以為 done、實際上 agent 只能跟 API 對話、**不能操作沒 API 的軟體 / 真實網頁 / 跑 code**——遇 safety issue（Comet 注入 / Amazon injunction、見 §10）也沒警告過。
+**沒這個 stage 的 curriculum gap**：學完 Stage 7 你以為 done、實際上 agent 只能跟 API 對話、**不能操作沒 API 的軟體 / 真實網頁 / 跑 code**——遇 safety issue（Comet 注入 / Amazon injunction、見[§Safety](#-2026-safety--security-重點)）也沒警告過。
 
 ### 為什麼兩 track 共用
 
@@ -124,7 +124,7 @@ agent 收到任務
 
 | Vendor | 產品 | 2026 狀態 | OSWorld | 強項 |
 |---|---|---|---|---|
-| **Anthropic** | [Claude Opus 4.7 / Sonnet 4.6 Computer Use](https://www.anthropic.com/news/3-5-models-and-computer-use) | GA、跨 macOS / Linux / Windows（Docker）| **Opus 4.6 達 72.7%**（近 human baseline 72%）| reasoning + code agent、Stage 5/7 主場 |
+| **Anthropic** | [Claude Opus 4.7 / Sonnet 4.6 Computer Use](https://www.anthropic.com/news/3-5-models-and-computer-use) | GA、跨 macOS / Linux / Windows（Docker）| **72.7%**（Opus 4.6 baseline、近 human 72%；Opus 4.7 2026-04 release 數字未公布）| reasoning + code agent、Stage 5/7 主場 |
 | **OpenAI** | [Codex desktop](https://openai.com/index/codex-for-almost-everything/)（April 2026）| GA、**background mode** 不搶 cursor、in-app browser、90+ plugins | CUA 38.1% | 跟 ChatGPT + Atlas 合併成 **Desktop Superapp** |
 | **OpenAI** | [Computer-Using Agent (CUA)](https://openai.com/index/computer-using-agent/) | API | 38.1% / WebArena 58.1% | API-first、可整合自己 stack |
 | **Google** | [Gemini in Chrome](https://gemini.google/overview/gemini-in-chrome/)（Gemini 3）| GA + Android | — | **Auto Browse** + **Chrome Skills**、Chrome Enterprise Premium $6/user/月 |
@@ -310,7 +310,7 @@ agent 收到任務
 | 研究 / 跨頁面 synthesis | **Comet** | research-tuned、citation-backed |
 | ChatGPT user / Agent Mode | **Atlas** | Plus/Pro/Business 內建 |
 | Chrome / Google ecosystem | **Gemini in Chrome** | Auto Browse + Skills、enterprise DLP |
-| **避開**：Comet 跑 e-commerce / banking | — | ⚠ 2026-03 federal injunction（見 §10）|
+| **避開**：Comet 跑 e-commerce / banking | — | ⚠ 2026-03 federal injunction（詳見[§Safety](#-2026-safety--security-重點)）|
 
 ### 跨 app workflow 範例
 
