@@ -233,6 +233,85 @@ Stage 3 §反思（基本版）                Stage 6 本節（完整版）
 > - 想理解「反思怎麼跨 session 累積、agent 怎麼從過去學教訓」→ 本節
 > - 想看 production agent 內怎麼用反思（Cursor / Claude Code）→ [Stage 5 §5.6 Harness Internals](05-claude-code-ecosystem.md#56--claude-code-source-解剖reference-harness-implementation-track-b-必看)
 
+## 🚀 進階 RAG 技巧（跑完基本 RAG 之後再看）
+
+下面三個 subsection 是 2024-2025 production RAG 最常加上的三個槓桿。**先跑完上面練習 1-5 拿到基準版本、再回來看這裡**——不然你會在沒有基準的情況下調參數，永遠不知道是哪個改動帶來提升。
+
+| 技巧 | 解決什麼問題 | 加在 pipeline 哪一層 | 成本 |
+|---|---|---|---|
+| **GraphRAG** | vanilla RAG 不會做 multi-hop / 跨文件 entity-relation 推理 | retrieve 前（建 graph）+ retrieve 時（graph traversal）| 高（要先建 KG、需 LLM 抽 entity）|
+| **Contextual Retrieval** | chunk 失去原文件 context、retrieval 撈錯片段 | chunk 後 / embed 前（加 contextual header）| 中（一次性、搭 prompt caching 後便宜 90%）|
+| **Hybrid Search & Reranking** | 純 vector 漏字面命中、top-k 雜訊高 | retrieve 中（並查 BM25）+ retrieve 後（cross-encoder rerank）| 低（成熟工具直接接）|
+
+### 🔗 GraphRAG — 知識圖譜 + RAG
+
+**Mental model**：vanilla RAG 把文件切成 chunk、靠 embedding 相似度撈片段——但**它不知道哪些 entity 是同一個東西、entity 之間有什麼關係**。GraphRAG 在 ingest 階段先用 LLM 把文件抽成 **(entity, relation, entity)** 三元組建知識圖譜，retrieve 時除了向量比對、還做 graph traversal 撈到「相關 entity 的相關 entity」。
+
+**何時用**：
+- 任務需要 **multi-hop reasoning**（A → B → C 才能回答）
+- 跨多份文件、entity 互相引用（公司財報、論文引用、調查報告、法律案例）
+- 問題形如「X 影響了什麼 Y、Y 又連到哪些 Z」——vanilla RAG 通常只撈到 X 那塊文件
+
+**何時不用**：
+- 文件之間沒有 entity-relation 連結（純 FAQ、產品手冊各自獨立）
+- 知識庫小（< 1k chunk）——vanilla RAG 已經夠
+- 預算緊——建 KG 的 token 成本可能是普通 RAG 的 10-50 倍
+
+**代表 framework**：
+- [**Microsoft GraphRAG**](https://github.com/microsoft/graphrag) ⭐ — 原版 reference 實作、Apache-2.0、含 community detection
+- [**HKUDS/LightRAG**](https://github.com/HKUDS/LightRAG) — 輕量版、EMNLP 2025、KG + vector hybrid、cost 比 Microsoft 版低
+- [**gusye1234/nano-graphrag**](https://github.com/gusye1234/nano-graphrag) — < 1000 行的最小實作、適合先讀懂原理
+
+**Paper**：[**From Local to Global: A Graph RAG Approach to Query-Focused Summarization (Edge et al. 2024)**](https://arxiv.org/abs/2404.16130) — Microsoft GraphRAG 的原始 paper、解釋 community summarization 為什麼能解 global query
+
+### 🪶 Contextual Retrieval — Anthropic 的 prompt-caching 解法
+
+**Mental model**：vanilla chunk 失去原文件 context——「Q3 revenue grew 15%」這個 chunk 抽出來、你不知道是**哪家公司**、**哪一年**的 Q3。Anthropic 2024 提出：**ingest 時用 LLM 為每個 chunk 寫一段 50-100 token 的 contextual header**（「This chunk is from ACME Corp 2024 Q3 earnings, discussing the cloud segment...」）拼到 chunk 前面再 embed。搭配 **prompt caching** 讓「整份文件 + 每個 chunk」這個 prompt 只計費一次、後面所有 chunk 共用 cache。
+
+**何時用**：
+- chunk 字面意思跟原文件主題距離遠（財報、研究報告、長 narrative 文件）
+- 你願意一次性付 ingest 成本、換 retrieve 精度
+- 已經在用 Claude / 想用 prompt caching（其他 model 也能跑、就是沒 cache 折扣）
+
+**何時不用**：
+- chunk 本身就是 self-contained（FAQ、產品介紹頁、定義條目）
+- 知識庫經常變動（每改一次就要重 ingest）
+- 預算極緊——即便 cache 折扣後、ingest 成本仍比 vanilla 高
+
+**為什麼省 90% cost**：Anthropic 報告 prompt caching 把「整份文件當 cached prefix」、每個 chunk 只送差異——比起每 chunk 都餵整份文件、成本降到約 1/10。但**這只省 ingest、不省 retrieve 階段**。
+
+**代表實作**：
+- [**Anthropic — Contextual Retrieval blog**](https://www.anthropic.com/news/contextual-retrieval) ⭐ — 官方說明 + benchmark（failed retrieval rate 從 5.7% 降到 1.9%）
+- [**Anthropic cookbook**](https://platform.claude.com/cookbook/capabilities-contextual-embeddings-guide) — 端到端 Jupyter notebook、含 prompt 模板
+
+**搭配技巧**：Anthropic 同篇 blog 還建議疊上 **Contextual BM25**（contextual chunk 同時餵 vector + BM25）+ **reranking**——剛好接到下面 §Hybrid Search & Reranking。
+
+### 🎯 Hybrid Search & Reranking — production RAG 的兩個 polish
+
+**Mental model**：
+- **Hybrid Search** = vector similarity（語意像）+ BM25 / keyword（字面像）並查、用 [RRF (Reciprocal Rank Fusion)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf) 之類融合分數。解決純 vector search「query 跟 chunk 同義但用詞不同沒撈到」+「人名 / 編號 / 罕用詞語意 embedding 太弱」的雙重盲點。
+- **Reranking** = 第一階段 retrieve **top-50**（recall 優先、寬鬆撈）→ 用 **cross-encoder reranker** 重新打分排成 **top-5**（precision 優先、精準篩）。cross-encoder（query + chunk 一起進 model）比 bi-encoder（query / chunk 分開 embed）精準很多、但太慢、所以只用在第二階段。
+
+**為什麼是「必加 polish」**：production RAG 評測幾乎一面倒——加 hybrid + reranker 後 recall@5 通常從 70% 上下提到 85-90%、邊際成本低、實作成熟。**這是 cost / benefit 最好的兩個改動**。
+
+**何時用**：
+- production RAG（不是 demo / 練習）
+- query 包含人名、產品編號、技術術語、罕見字（純 vector 容易漏）
+- 預算允許每 query 多 100-300ms latency
+
+**何時可以暫緩**：
+- 練習階段 / MVP（先把 vanilla RAG 跑通）
+- 預算極緊 / latency 極敏感（reranker 是額外一次 model call）
+
+**代表工具**：
+- **Hybrid search**：[Weaviate](https://github.com/weaviate/weaviate)（內建 BM25 + vector + RRF）/ [Qdrant](https://github.com/qdrant/qdrant)（支援 sparse + dense vector）/ pgvector + Postgres FTS
+- **Reranker**：[Cohere Rerank API](https://docs.cohere.com/docs/rerank-overview)（商業、最常用）/ [BGE Reranker](https://huggingface.co/BAAI/bge-reranker-large)（開源、HuggingFace、中文表現好）/ [Jina Reranker](https://jina.ai/reranker)
+- **Framework 內建**：LlamaIndex 的 `SentenceTransformerRerank` / LangChain 的 `ContextualCompressionRetriever`
+
+**Paper / 入門**：
+- [**Pinecone — Rerankers and Two-Stage Retrieval**](https://www.pinecone.io/learn/series/rag/rerankers/) — reranker mental model 講最清楚
+- [**Anthropic — Contextual Retrieval**](https://www.anthropic.com/news/contextual-retrieval)（上面已列）— 同時示範 hybrid + reranker、有 benchmark
+
 ## 🛠 動手練習（基礎 illustrative 練習）
 
 ### 練習 1：Embeddings
