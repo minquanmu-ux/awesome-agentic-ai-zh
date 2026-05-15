@@ -229,7 +229,7 @@ Track A 的人**已经在用** [Stage 7.5 的进阶概念](../../stages/07.5-adv
 - [ ] 把你的 CLAUDE.zh-Hans.md / commands 打包过至少一次（即使只有自己用）
 - [ ] 知道什么任务值得加 observability、什么不值得
 
-如果都可以 → **Track A 完整通关**。挑一个 [specialized branch](../../README.zh-Hans.md#-学习地图两条学习路径) 继续走（researcher / developer / teacher / knowledge-worker / everyday-users）。
+如果都可以 → **Track A 完整通关**。建议接着走 [**Stage 8 — Agent Interfaces**](../../stages/08-agent-interfaces.zh-Hans.md)（**两 track 共用 hub**：Computer Use / Browser Use / Code Sandbox，Track A 视角约 1-2 周），或挑一个 [specialized branch](../../README.zh-Hans.md#-学习地图两条学习路径) 继续走（researcher / developer / teacher / knowledge-worker / everyday-users）。
 
 如果想再深入“**怎么写自己的 CLI agent**”（不是用现有的）→ 跳到 [Track B Stage 3](../../stages/03-tool-use-and-hello-agent.zh-Hans.md) 开始。Track A 跟 Track B 互补。
 

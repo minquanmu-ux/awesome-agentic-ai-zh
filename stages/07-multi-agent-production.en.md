@@ -307,7 +307,7 @@ Can you:
 - [ ] Measure the cost difference before and after implementing prompt caching on a real workload?
 - [ ] Deploy an agent to the cloud (any provider)?
 
-If you can do all of these → proceed to [**Stage 8 — Agent Interfaces**](08-agent-interfaces.md) (**a shared hub for both tracks**) to learn how agents interact with the non-API world (Computer Use / Browser Use / Sandbox). Or, pick a [specialized branch](../README.md#️-7-stage-learning-map), or come back and contribute to this repo.
+If you can do all of these → first go to [**Stage 7.5 — Advanced Agentic Concepts Map**](07.5-advanced-agentic-concepts.md) (1 week, no coding — build a frontier concept map and locate which advanced concepts the industry is still debating), then proceed to [**Stage 8 — Agent Interfaces**](08-agent-interfaces.md) (**a shared hub for both tracks**) to learn how agents interact with the non-API world (Computer Use / Browser Use / Sandbox). Or, pick a [specialized branch](../README.md#️-7-stage-learning-map), or come back and contribute to this repo.
 
 ## 💡 What's Next
 
