@@ -27,6 +27,85 @@ After this stage you will be able to:
 - Compare the four major LLM families (Claude / GPT / Gemini / Llama) on strengths
 - Estimate cost per task using per-token pricing
 
+## 🌐 Major LLM Family Comparison (2026-05 snapshot)
+
+"How is Claude different from GPT?" "Can I use Chinese models?" "Which OSS model should I run with Ollama?" This section gives you an **objective side-by-side view**. It does not declare a single "best" model: it compares **strengths / good-fit tasks / weaknesses** and includes **official docs URLs** so you can verify the claims yourself.
+
+> 💡 **First, a few terms**:
+> - **Context window** = the amount of conversation an LLM can remember in one pass; it is capped (for example, 200k tokens ~= 150k Chinese characters)
+> - **Apache 2.0 / MIT** = open-source terms that permit commercial use, modification, and closed-source redistribution; **Llama Community License** = open-source but with conditions (for example, orgs with >= 700M MAU need a license)
+> - **Frontier model** = each provider's strongest flagship; **OSS** = open-source, with weights downloadable for self-hosting
+
+### 🇺🇸 US Commercial Frontier (3 providers)
+
+These 3 are SaaS APIs: you pay per token and cannot self-host them.
+
+| Model family | Flagship (2026-05) | Context | Strengths | Best for | Official docs |
+|---|---|---|---|---|---|
+| **Claude** (Anthropic) | Opus 4.7 / Sonnet 4.6 / Haiku 4.5 | 200k (Sonnet 4.6 ent 1M) | long-form / coding / agent / safety alignment | writing papers / code review / agent runtime | [platform.claude.com/docs](https://platform.claude.com/docs/en/about-claude/models/overview) |
+| **GPT** (OpenAI) | GPT-5.5 / GPT-5 / o-series | ~400k | general-purpose / function calling / broadest ecosystem | broad queries / function-call frameworks / GPTs ecosystem | [platform.openai.com/docs/models](https://platform.openai.com/docs/models) |
+| **Gemini** (Google) | 3.1 Pro / Flash | **2M** (Pro series; Flash is 1M) | long context / native multimodal / Google integration | PDF / video and audio / large document sets / Google Workspace | [ai.google.dev](https://ai.google.dev/gemini-api/docs/models/gemini) |
+
+### 🇨🇳 Chinese Commercial + Open-Source Frontier (7 providers)
+
+These are the main choices for Chinese-language work. Some are API-only (DeepSeek / Kimi / Hunyuan); others also release **OSS weights** (Qwen / GLM-5.1 / Yi can run through Ollama).
+
+| Model family | Flagship (2026-05) | Context | Strengths | Best for | License | Official |
+|---|---|---|---|---|---|---|
+| **DeepSeek** | V3 (`deepseek-chat`) / R1 (`deepseek-reasoner`) ⚠️ V4-series weights are open-source; consumer API is not fully public yet | 128k | reasoning / coding / **lowest cost** | high-token workloads / code generation / math | API proprietary; some weights OSS on HF | [api-docs.deepseek.com](https://api-docs.deepseek.com/zh-cn/) |
+| **Qwen** (Alibaba) | Qwen3 (cloud DashScope + Apache 2.0 OSS) | 128k+ | **strongest Chinese OSS** / multimodal / agent | Chinese long-form writing / agent / self-host | Apache 2.0 (OSS) + proprietary (cloud) | [qwen.ai](https://qwen.ai/) · [DashScope](https://help.aliyun.com/zh/dashscope/) |
+| **Kimi** (Moonshot) | K2.6 multimodal + Agent | **very long context (1M+)** | long context / Chinese long-form writing | whole-book reading / literature triage | Proprietary | [platform.moonshot.cn](https://platform.moonshot.cn/) |
+| **GLM** (Zhipu) | GLM-5 proprietary / GLM-5.1 Apache 2.0 | 128k | Chinese / tool use / agent | Chinese agents / multi-turn chat | proprietary + Apache 2.0 (5.1) | [open.bigmodel.cn](https://open.bigmodel.cn/) · [chatglm.cn](https://chatglm.cn/) |
+| **Hunyuan** (Tencent) | T1 (deep-thinking, Transformer-Mamba MoE) + TurboS | 128k | **DeepSeek R1-comparable reasoning**, Chinese | Chinese reasoning / Tencent ecosystem | Proprietary | [hunyuan.tencent.com](https://hunyuan.tencent.com/) |
+| **MiniMax** | abab6.5 + M2.7 | 200k | multimodal / Chinese long prose | Chinese writing / video and audio multimodal | Proprietary | [platform.minimax.io](https://platform.minimax.io/) |
+| **Yi** (01.AI / Kai-Fu Lee) | Yi-Lightning (new API flagship) / Yi-34B-Chat (OSS, 200k context) | 200k | **Chinese OSS** alternative to Llama | Chinese self-host / Chinese API | Apache 2.0 (OSS) / proprietary (Lightning) | [01.ai](https://01.ai/) · [GitHub](https://github.com/01-ai/Yi) |
+
+> ⚠️ **Xiaomi MiMo** is listed in [`resources/cli-agents-guide.md`](../resources/cli-agents-guide.md) for Hermes Agent routing, but as of 2026-05 there is no authoritative official source to verify it, so it is not included in this table. To try it, connect through [Hermes Agent](https://github.com/NousResearch/hermes-agent) 200+ provider routing.
+
+### 🌍 Western Open-Source (4 providers, self-host defaults)
+
+These are the main choices for running on your own hardware, avoiding API fees, or handling privacy-sensitive work. You can install them in one command through [Ollama](https://ollama.com/).
+
+| Model family | Active size | License | Strengths | Best for | Official |
+|---|---|---|---|---|---|
+| **Llama** (Meta) | 3.3 70B (**Llama 4 not yet released as of 2026-05**) | Llama Community License | general-purpose / broadest ecosystem / Ollama default | self-hosting intro / fine-tune base | [llama.com](https://www.llama.com/) · [HF Meta](https://huggingface.co/meta-llama) |
+| **Gemma** (Google) | Gemma 4 26B MoE + 31B dense (released 2026-04; Arena #3) | Apache 2.0 | **small and efficient** / strong Apple MLX integration / multimodal | edge / mobile / 4-8 GB RAM machines | [ai.google.dev/gemma](https://ai.google.dev/gemma) |
+| **Mistral** (Mistral AI) | 7B / Mixtral 8x7B / Codestral | Apache 2.0 (OSS parts) | strongest open-source 7B class | commercial self-host / EU sovereignty | [mistral.ai](https://mistral.ai/) · [HF Mistral](https://huggingface.co/mistralai) |
+| **Phi** (Microsoft) | Phi-4 14B reasoning + Phi-4-multimodal-instruct (multimodal version) | MIT | **small but strong** / reasoning / edge-friendly | 4 GB+ RAM / mobile / reasoning intro | [HF microsoft](https://huggingface.co/microsoft) |
+
+### 🎯 Which One Should I Pick? (by scenario)
+
+| Your scenario | Pick + why |
+|---|---|
+| First time learning an LLM API, prioritize complete tutorials | **Claude** — Anthropic Cookbook + Courses are widely considered the most complete |
+| Long-form writing / papers / code review | **Claude Sonnet** — long-form prose is a core strength |
+| Multimodal (PDF / video and audio / images) | **Gemini** or **Kimi** — native multimodal |
+| Broad queries + function calling frameworks | **GPT** — broadest ecosystem and deepest SDK integration |
+| **Chinese scenarios + commercial API** | **Kimi** (strong long context; can fit whole books), **DeepSeek** (lowest cost), or **GLM** (agent-friendly) |
+| **Chinese scenarios + open-source self-host** | **Qwen 3** (Apache 2.0; currently the strongest Chinese OSS) |
+| Reasoning / math (reasoning model) | **DeepSeek R1** / **Hunyuan T1** / **OpenAI o-series** |
+| Privacy / offline / no API fees | **Llama 3.3** / **Gemma 4** / **Qwen 3 OSS** via [Ollama](https://ollama.com/) |
+| Edge / 4 GB RAM machine | **Gemma 4** / **Phi-4** / **Qwen 3 (`qwen3-3B` or smaller variants)** |
+| 100k+ token large documents | **Gemini 3.1** (2M context) or **Kimi K2.6** (1M+) |
+| **Want the lowest cost** (API-bill sensitive) | **DeepSeek V4-Flash** — lowest token price among same-tier English models |
+
+### 📊 Neutral Benchmark Resources (verify for yourself; do not rely on one source)
+
+| Resource | Use | URL | 2026-05 status |
+|---|---|---|---|
+| **Artificial Analysis** | Third-party benchmarks plus price/latency aggregation, including Chinese models | https://artificialanalysis.ai/ | ✓ Active |
+| **Arena AI** (formerly LMSYS Chatbot Arena) | Human blind-test ELO leaderboard | https://arena.ai/leaderboard/text | ✓ Active |
+| **Vellum LLM leaderboard** | Aggregates multiple benchmarks | https://www.vellum.ai/llm-leaderboard | ✓ Active |
+| **HuggingFace OpenLLM Leaderboard** | Open-source model rankings | https://huggingface.co/spaces/open-llm-leaderboard | ⚠️ Occasional runtime errors as of 2026-05; use the [Arena AI](https://arena.ai/) open-source tab as fallback |
+| **SuperCLUE** | Authoritative benchmark for Chinese-language scenarios | https://www.superclueai.com/ | ✓ Active |
+
+### ⚠️ Important Caveats
+
+- ⚠️ **Benchmark != production performance**: run a small eval on your specific task (for example, paste 10 real prompts and see which model answers closest to what you need); **do not pick only from rankings**
+- ⚠️ **Frontier changes every 6 months**: all numbers above are a **2026-05 snapshot**; afterward, rely on **official docs** / [Artificial Analysis](https://artificialanalysis.ai/)
+- ⚠️ **"Strength" is relative, not absolute**: every frontier model can handle basic tasks; differences matter at the margin
+- ⚠️ **For Chinese scenarios, check [SuperCLUE](https://www.superclueai.com/)**: general international benchmarks such as MMLU are English-heavy, and Chinese-language performance may diverge
+
 ## 🚪 Entry Conditions
 
 You should already:

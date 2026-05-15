@@ -26,6 +26,85 @@
 - 比较不同 LLM 提供商（Claude / GPT / Gemini / Llama）的优劣。
 - 理解 per-token 定价模型并估算成本。
 
+## 🌐 主流 LLM 家族对比（2026-05 snapshot）
+
+「Claude 跟 GPT 有什么不同？」「中国模型能用吗？」「我该装 Ollama 跑哪个 OSS model？」——这节给你**客观对照**。不下「最好」结论——用 **强项 / 适合任务 / 弱项** 3 维比较、附**官方 docs URL**让你自己 verify。
+
+> 💡 **先解释几个名词**：
+> - **Context window** = LLM 一次能记住的对话量、有上限（例如 200k token ≈ 15 万中文字）
+> - **Apache 2.0 / MIT** = 可商用 / 可修改 / 可闭源再发布的开源条款；**Llama Community License** = 开源但有条款限制（例如 ≥ 7 亿 MAU 要授权）
+> - **Frontier model** = 各家最强旗舰；**OSS** = open-source、weights 可下载 self-host
+
+### 🇺🇸 美系商业 frontier（3 家）
+
+这 3 家是 SaaS API、按 token 付费、不能 self-host：
+
+| Model 家族 | 旗舰（2026-05）| Context | 强项 | 适合任务 | 官方 docs |
+|---|---|---|---|---|---|
+| **Claude**（Anthropic）| Opus 4.7 / Sonnet 4.6 / Haiku 4.5 | 200k（Sonnet 4.6 ent 1M）| long-form / coding / agent / safety alignment | 写 paper / code review / agent runtime | [platform.claude.com/docs](https://platform.claude.com/docs/en/about-claude/models/overview) |
+| **GPT**（OpenAI）| GPT-5.5 / GPT-5 / o-series | ~400k | 通用 / function calling / ecosystem 最广 | 广度查询 / function-call 框架 / GPTs 生态 | [platform.openai.com/docs/models](https://platform.openai.com/docs/models) |
+| **Gemini**（Google）| 3.1 Pro / Flash | **2M**（Pro 系列、Flash 为 1M）| 长 context / 原生 multimodal / Google 整合 | PDF / 影音 / 大量文件 / Google Workspace | [ai.google.dev](https://ai.google.dev/gemini-api/docs/models/gemini) |
+
+### 🇨🇳 中国商业 + 开源 frontier（7 家）
+
+中文场景的主力——有些纯 API（DeepSeek / Kimi / Hunyuan）、有些**同时发布 OSS weights**（Qwen / GLM-5.1 / Yi 可在 Ollama 跑）：
+
+| Model 家族 | 旗舰（2026-05）| Context | 强项 | 适合任务 | 授权 | 官方 |
+|---|---|---|---|---|---|---|
+| **DeepSeek**（深度求索）| V3（`deepseek-chat`）/ R1（`deepseek-reasoner`）⚠️ V4 系列 weights 开源、消费 API 尚未全公开 | 128k | 推理 / coding / **cost 最低** | 大量 token / code 生成 / math | API proprietary、部分 weights OSS 在 HF | [api-docs.deepseek.com](https://api-docs.deepseek.com/zh-cn/) |
+| **Qwen**（阿里）| Qwen3（cloud DashScope + Apache 2.0 OSS）| 128k+ | **中文最强 OSS** / 多模态 / agent | 中文长文 / agent / self-host | Apache 2.0（OSS）+ proprietary（cloud）| [qwen.ai](https://qwen.ai/) · [DashScope](https://help.aliyun.com/zh/dashscope/) |
+| **Kimi**（Moonshot）| K2.6 multimodal + Agent | **超长 context（1M+）** | 长 context / 中文长文 | 整本书读 / 文献分流 | Proprietary | [platform.moonshot.cn](https://platform.moonshot.cn/) |
+| **GLM**（智谱 Zhipu）| GLM-5 proprietary / GLM-5.1 Apache 2.0 | 128k | 中文 / tool use / agent | 中文 agent / 多轮对话 | proprietary + Apache 2.0（5.1）| [open.bigmodel.cn](https://open.bigmodel.cn/) · [chatglm.cn](https://chatglm.cn/) |
+| **Hunyuan**（腾讯）| T1（deep-thinking、Transformer-Mamba MoE）+ TurboS | 128k | **可比 DeepSeek R1 推理**、中文 | 中文推理 / 腾讯生态 | Proprietary | [hunyuan.tencent.com](https://hunyuan.tencent.com/) |
+| **MiniMax** | abab6.5 + M2.7 | 200k | 多模态 / 中文长 prose | 中文写作 / 影音 multimodal | Proprietary | [platform.minimax.io](https://platform.minimax.io/) |
+| **Yi**（01.AI / 李开复）| Yi-Lightning（API 新旗舰）/ Yi-34B-Chat（OSS、200k context）| 200k | **中文 OSS** 替代 Llama | 中文 self-host / 中文 API | Apache 2.0（OSS）/ proprietary（Lightning）| [01.ai](https://01.ai/) · [GitHub](https://github.com/01-ai/Yi) |
+
+> ⚠️ **小米 MiMo** 虽在 [`resources/cli-agents-guide.md`](../resources/cli-agents-guide.md) 列入 Hermes Agent routing，但 2026-05 无权威官方 source 可验证，暂不收进此表。要试 → 通过 [Hermes Agent](https://github.com/NousResearch/hermes-agent) 200+ provider routing 接入。
+
+### 🌍 西方开源（4 家、self-host 主力）
+
+跑在自己机器、不付 API、隐私敏感场景的主力——可通过 [Ollama](https://ollama.com/) 一行指令装起来：
+
+| Model 家族 | 大小（活跃）| License | 强项 | 适合任务 | 官方 |
+|---|---|---|---|---|---|
+| **Llama**（Meta）| 3.3 70B（**Llama 4 截至 2026-05 尚未发布**）| Llama Community License | 通用 / 生态最广 / Ollama 默认 | self-host 入门 / fine-tune base | [llama.com](https://www.llama.com/) · [HF Meta](https://huggingface.co/meta-llama) |
+| **Gemma**（Google）| Gemma 4 26B MoE + 31B dense（2026-04 发布、Arena #3）| Apache 2.0 | **小巧高效** / Apple MLX 整合好 / multimodal | Edge / mobile / 4-8GB RAM 机器 | [ai.google.dev/gemma](https://ai.google.dev/gemma) |
+| **Mistral**（Mistral AI）| 7B / Mixtral 8x7B / Codestral | Apache 2.0（OSS 部分）| 开源 7B 级最强 | 商用 self-host / EU 主权 | [mistral.ai](https://mistral.ai/) · [HF Mistral](https://huggingface.co/mistralai) |
+| **Phi**（Microsoft）| Phi-4 14B reasoning + Phi-4-multimodal-instruct（multimodal 版）| MIT | **小但强** / reasoning / 适合 edge | 4GB+ RAM / mobile / reasoning 入门 | [HF microsoft](https://huggingface.co/microsoft) |
+
+### 🎯 我该选哪家？（按场景反查）
+
+| 你的场景 | 推荐 + 为什么 |
+|---|---|
+| 第一次学 LLM API、教材完整度优先 | **Claude** — Anthropic Cookbook + Courses 是社群公认最完整 |
+| 写长文 / paper / code review | **Claude Sonnet** — long-form prose 强项 |
+| 多模态（PDF / 影音 / 图）| **Gemini** 或 **Kimi** — 原生 multimodal |
+| 广度查询 + function calling 框架 | **GPT** — ecosystem 最广、SDK 整合最深 |
+| **中文场景 + 商业 API** | **Kimi**（长 context 强、能塞整本书）或 **DeepSeek**（cost 最低）或 **GLM**（agent 友好）|
+| **中文场景 + 开源 self-host** | **Qwen 3**（Apache 2.0、目前中文最强 OSS）|
+| 推理 / math（reasoning model）| **DeepSeek R1** / **Hunyuan T1** / **OpenAI o-series** |
+| 隐私 / offline / 不付 API | **Llama 3.3** / **Gemma 4** / **Qwen 3 OSS** via [Ollama](https://ollama.com/) |
+| Edge / 4GB RAM 机器 | **Gemma 4** / **Phi-4** / **Qwen 3（`qwen3-3B` 或以下版本）** |
+| 100k+ token 大文件 | **Gemini 3.1**（2M context）或 **Kimi K2.6**（1M+）|
+| **想 cost 最低**（API 账单敏感）| **DeepSeek V4-Flash** — 同级英文 model 中 token 单价最低 |
+
+### 📊 中立 benchmark 资源（自己 verify、不靠单一 source）
+
+| 资源 | 用途 | URL | 2026-05 状态 |
+|---|---|---|---|
+| **Artificial Analysis** | 第三方 benchmark + price/latency 整合（含中国 model）| https://artificialanalysis.ai/ | ✓ Active |
+| **Arena AI**（前 LMSYS Chatbot Arena）| 人类盲测 ELO 排名 | https://arena.ai/leaderboard/text | ✓ Active |
+| **Vellum LLM leaderboard** | 多 benchmark 整合 | https://www.vellum.ai/llm-leaderboard | ✓ Active |
+| **HuggingFace OpenLLM Leaderboard** | 开源 model 排名 | https://huggingface.co/spaces/open-llm-leaderboard | ⚠️ 2026-05 偶尔 runtime error、改看 [Arena AI](https://arena.ai/) 开源 tab |
+| **SuperCLUE**（中文 benchmark）| 中文场景权威评测 | https://www.superclueai.com/ | ✓ Active |
+
+### ⚠️ 重要警语
+
+- ⚠️ **Benchmark ≠ production performance**——LLM 在你 specific 任务的表现要自己跑 small eval（例如贴 10 个你真实 prompt 看哪家答得最像你要的）、**不能只看排名选**
+- ⚠️ **Frontier 6 个月洗牌一次**——上面所有数字是 **2026-05 snapshot**、之后请以**官方 docs** / [Artificial Analysis](https://artificialanalysis.ai/) 为准
+- ⚠️ **「强项」是 relative、不是 absolute**——所有 frontier model 都能完成基本任务、差别在边际情境
+- ⚠️ **中文场景看 [SuperCLUE](https://www.superclueai.com/)**——一般国际 benchmark（如 MMLU）以英文为主、中文表现可能跟英文不一致
+
 ## 前置要求
 
 你需要具备以下基础：
