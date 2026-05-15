@@ -49,7 +49,9 @@
 
 > 📋 **这节是什么**：把 Claude Code 的 7 个 primitive（MCP / Skills / Plugins / Subagents / Hooks / Slash commands / CLI）对应到 **7 个架构层 + 3 个工程学 discipline**——进 5.1-5.6 之前先看一次，知道接下来在学什么层；学完回头看，就是 synthesis。**分层是教学选择，不是 absolute 真理**。
 
-> 📊 PNG 版（PNG 待 user 生成，目前先用下面 ASCII）：`resources/diagrams/claude-architecture-map.zh-Hans.png`
+![Claude Code 7-Layer Architecture Map](../resources/diagrams/claude-architecture-map.zh-Hans.png)
+
+> 📊 **上图**：Claude Code 7 个架构层 + 3 个工程学 discipline 整合视图（accessible ASCII 版见下）。
 
 ### ASCII 版（accessible、git diff friendly）
 
