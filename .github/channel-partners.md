@@ -97,3 +97,39 @@ Order by signal strength (top = stronger):
 
 If by **2026-06-01** no signal #1-3 has landed across all 8: pause outreach,
 audit the pitch tone (likely too founder-y, not enough technical specifics).
+
+
+---
+
+## English-audience launch (added 2026-05-17)
+
+Rationale: 14-day traffic is ~100% Chinese-social (Threads #1 external
+referrer); zero English dev-channel inbound (no HN / Reddit / lobste.rs
+/ newsletter). English content is 99.6% native (0.4% CJK measured) but
+was under-promoted. Pre-req DONE this round: README positioning reframed
+(trilingual / English fully maintained) + GitHub description/topics
+de-zh-gated (commit b4bb862). Drafts ready — maintainer posts manually.
+
+| # | Target | Channel | Status | Draft | Notes |
+|---|---|---|---|---|---|
+| E1 | Hacker News | Show HN (one shot) | not contacted | [hacker-news.md](outreach/hacker-news.md) | Highest single-spike; weekday AM US-Eastern; author first-comment pre-empts "why a list"/"MT slop" |
+| E2 | r/AI_Agents | Reddit self-post | not contacted | [reddit.md](outreach/reddit.md) | Primary sub; exact audience |
+| E3 | r/LocalLLaMA | Reddit self-post | not contacted | [reddit.md](outreach/reddit.md) | Local-LLM-angle variant |
+| E4 | r/ClaudeAI | Reddit self-post | not contacted | [reddit.md](outreach/reddit.md) | Ecosystem-depth variant |
+| E5 | r/learnmachinelearning | Reddit self-post | not contacted | [reddit.md](outreach/reddit.md) | Resource-framing variant |
+| E6 | TLDR AI / Ben's Bites / Latent Space / LWiAI | Newsletter tip | not contacted | [newsletters-en.md](outreach/newsletters-en.md) | Submit AFTER a HN/Reddit signal to reference |
+| E7 | e2b-dev/awesome-ai-agents · kyrolabs/awesome-agents · Shubhamsaboo/awesome-llm-apps | GitHub PR | not contacted | [awesome-lists-en.md](outreach/awesome-lists-en.md) | Passive; PR desc MUST state "trilingual/EN-maintained" or `-zh` gets mis-filed |
+
+### English sequencing rule
+
+1. **First**: README positioning + GitHub metadata (✅ done b4bb862) —
+   without it every English referral bounces on "this is Chinese-only".
+2. Then **one** of E1/E2 (HN or r/AI_Agents) — not both same day; gauge response.
+3. E3–E5 spaced 1 sub/day, each tailored (identical body = spam-flag).
+4. E6 newsletters only AFTER an E1–E5 signal exists ("already trending").
+5. E7 awesome-list PRs anytime (passive, low-risk), excluding the two
+   already tracked above (punkpeye #6, travisvn #9).
+
+Same "What NOT to do" rules as the zh matrix apply: no star-count lead,
+no overclaim, no upvote/star asks, reply to comments for ~24h, never
+mass-paste identical text.
