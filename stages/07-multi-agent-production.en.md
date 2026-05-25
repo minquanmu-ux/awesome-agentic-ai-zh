@@ -114,7 +114,7 @@ To turn an LLM into a usable agent, you usually run into three layers of enginee
 
 **Harness Engineering (agent runtime design) = connecting the LLM, tools, memory, state, workflow control, error handling, eval, observability, and deployment into an executable, observable, maintainable agent system.**
 
-→ Everything that is **not part of the model weights**, and is not just the prompt string itself, falls under harness. A production-grade agent runtime includes these 8 core components (the first 6 are built into the runtime, the 7th, eval, is a plug-in tool, and the 8th, cost / latency, is a cross-cutting concern):
+→ Everything that is **not part of the model weights**, and is not just the prompt string itself, falls under harness. A deployable agent runtime includes these 8 core components (the first 6 are built into the runtime, the 7th, eval, is a plug-in tool, and the 8th, cost / latency, is a cross-cutting concern):
 
 | Component | What it Does | Corresponding Exercise in this Stage |
 |---|---|---|
@@ -133,7 +133,7 @@ To turn an LLM into a usable agent, you usually run into three layers of enginee
 
 ### Reference Implementations
 
-Want to see what a production-grade harness looks like? Two references:
+Want to see what a harness running in production looks like? Two references:
 
 - **The entire Claude Code runtime** — is a reference harness implementation. **For a source-reading exercise, see [Stage 5.6](05-claude-code-ecosystem.en.md#56--dissecting-claude-code-source-reference-harness-implementation--a-must-read-for-track-b)** (clone `claude-agent-sdk-python` and dissect the main loop + where the first 6 runtime components from the table above live; the 7th, Eval harness, is a plugin, and the 8th, Cost / Latency, is cross-cutting, see the deep-dive below)
 - **`anthropics/claude-agent-sdk-python`** source — the specific repo used in the exercise above

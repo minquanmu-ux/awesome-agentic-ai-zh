@@ -114,7 +114,7 @@
 
 **Harness Engineering（Agent 执行系统设计）= 把 LLM、tools、memory、state、workflow control、错误处理、eval、observability 与 deployment 串成一套可执行、可观测、可维护的 agent 系统。**
 
-→ 所有**不属于 model weights、也不只是 prompt string 本身**的工程元件都算 harness 范围。一个 production-grade agent runtime 包含这 8 个核心元件（前 6 个是 runtime 内建、第 7 个 eval 是外挂工具、第 8 个 cost / latency 是跨层议题）：
+→ 所有**不属于 model weights、也不只是 prompt string 本身**的工程元件都算 harness 范围。一个可部署的 agent runtime 包含这 8 个核心元件（前 6 个是 runtime 内建、第 7 个 eval 是外挂工具、第 8 个 cost / latency 是跨层议题）：
 
 | 元件 | 做什么 | 对应本 stage 练习 |
 |---|---|---|
@@ -133,7 +133,7 @@
 
 ### 参考实现
 
-想看 production-grade harness 长什么样？两个 reference：
+想看实际在 production 跑的 harness 长什么样？两个 reference：
 
 - **Claude Code 整个 runtime** — 是 reference harness 实现。**读 source 练习见 [Stage 5.6](05-claude-code-ecosystem.md#56--claude-code-source-解剖reference-harness-implementation-track-b-必看)**（clone `claude-agent-sdk-python` 解剖 main loop + 上表前 6 个 runtime 元件位置；第 7 个 Eval harness 是外挂、第 8 个 Cost / Latency 是 cross-cutting、见下方深入段）
 - **`anthropics/claude-agent-sdk-python`** source — 上面练习用的具体 repo

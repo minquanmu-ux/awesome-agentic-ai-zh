@@ -202,7 +202,7 @@ Use Pydantic AI to build an agent that returns structured output (e.g., for a gi
 | | [LangChain](https://github.com/langchain-ai/langchain) | ⭐⭐⭐ | Rapid prototypes that need to glue together many components (retrieval + chains). | The swiss-army-knife framework. ★ 135k+, MIT. **For agent orchestration, use LangGraph now.** LangChain is better for gluing retrieval + chaining. |
 | **Infrastructure**<br>(Not a framework, used across stages) | [BerriAI/litellm](https://github.com/BerriAI/litellm) | ⭐⭐⭐⭐ | When you need to switch between Claude / GPT / Gemini / open-source models without changing code. | A provider-agnostic SDK + AI gateway. Call 100+ LLMs using OpenAI's format. Includes cost tracking / fallbacks / guardrails. ★ 45k+, MIT (`enterprise/` subdirectory licensed separately). |
 
-> 💡 **Recommended reading path**: Pick **1 production-grade** (LangGraph) + **1 rapid-prototyping** (CrewAI) framework to learn deeply → Do exercises 1-3 → Skim the READMEs of the others to know they exist. The **3 specialized paths** (CodeAct / typed / memory-first) are only rivals in specific scenarios; you don't need to touch them otherwise.
+> 💡 **Recommended reading path**: Pick **1 for production deployment** (LangGraph) + **1 for rapid prototyping** (CrewAI) framework to learn deeply → Do exercises 1-3 → Skim the READMEs of the others to know they exist. The **3 specialized paths** (CodeAct / typed / memory-first) are only rivals in specific scenarios; you don't need to touch them otherwise.
 
 ## ✅ Self-Check Before Moving to Stage 5
 
@@ -217,6 +217,6 @@ If yes → Proceed to [Stage 5 — The Claude Code Ecosystem](05-claude-code-eco
 
 ## 💡 Strategic Tips + Potential Pitfalls
 
-Don't try to learn all of these. Pick **one production-grade (LangGraph)** and **one for rapid prototyping (CrewAI)** to learn in depth. For the others, just skim their READMEs to know they exist as options.
+Don't try to learn all of these. Pick **one for production deployment (LangGraph)** and **one for rapid prototyping (CrewAI)** to learn in depth. For the others, just skim their READMEs to know they exist as options.
 
 **A heads-up on Memory** (you might encounter this while learning, no need to read ahead): Some framework features use memory concepts—LangGraph's checkpointing (state persistence), CrewAI agents passing task results to each other (lightweight memory). These are covered in full in [Stage 6 — Memory & RAG](06-memory-rag.en.md). If you get stuck on a framework feature in this stage, check that section, but **you don't need to read it all before continuing this stage**.

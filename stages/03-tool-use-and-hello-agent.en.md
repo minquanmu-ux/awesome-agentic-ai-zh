@@ -411,7 +411,7 @@ messages.append({"role": "tool", "tool_call_id": tc.id,
 
 **4 improvements**: (1) `name` is more specific, (2) `description` says "**when** to use" not "**what** it does", (3) `type` is changed to `number`, (4) added `required` + `enum`.
 
-**The punchline**: **Effort in writing a good schema can save the cost of a larger model**—small models are more sensitive to schema quality than large models. The same bad schema that Claude might guess right, qwen will almost certainly get wrong. Want to use a cheaper model in production? Your schema must be production-grade.
+**The punchline**: **Effort in writing a good schema can save the cost of a larger model**—small models are more sensitive to schema quality than large models. The same bad schema that Claude might guess right, qwen will almost certainly get wrong. Want to use a cheaper model in production? Your schema must be solid enough to run in production.
 
 **What to do if you can't get the schema right?**: Install the [`examples/stage-5/tool-calling-tutor/`](../examples/stage-5/tool-calling-tutor/) skill. When you encounter "my LLM isn't calling my tool" or "what's wrong with my schema," it will pop up to help you debug.
 

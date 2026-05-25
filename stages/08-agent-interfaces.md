@@ -432,7 +432,7 @@ agent = Agent(
 用 E2B sandbox、讓 agent 生成 Python 算數據圖、在 sandbox 內跑、回傳結果。**目標**：體會 microVM isolation 跟直接在 host 跑的差別。
 
 ### 練習 4（進階）：OpenAI Agents SDK + sandbox + Computer Use
-用 OpenAI Agents SDK（2026-04 版）整合：sandbox 跑 code + Computer Use 操作 GUI、做一個小型 RPA-replacement workflow。**目標**：體會 production-grade harness + sandbox 整合。
+用 OpenAI Agents SDK（2026-04 版）整合：sandbox 跑 code + Computer Use 操作 GUI、做一個小型 RPA-replacement workflow。**目標**：體會上線運行的 harness + sandbox 整合。
 
 ## 🎯 常用工具推薦（按用途分類）
 

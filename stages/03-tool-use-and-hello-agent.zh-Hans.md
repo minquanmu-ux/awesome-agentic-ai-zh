@@ -411,7 +411,7 @@ messages.append({"role": "tool", "tool_call_id": tc.id,
 
 **4 个改进**：(1) `name` 改具体、(2) `description` 写“**何时**用”而非“**做什么**”、(3) `type` 改 `number`、(4) 加 `required` + `enum`。
 
-**punchline**：**写 schema 的功夫能省下换大 model 的成本**——小 model 对 schema 质量比大 model 敏感，相同 bad schema 在 Claude 上可能还能猜对、在 qwen 上几乎必错。Production 想用便宜 model？schema 必须写到 production-grade。
+**punchline**：**写 schema 的功夫能省下换大 model 的成本**——小 model 对 schema 质量比大 model 敏感，相同 bad schema 在 Claude 上可能还能猜对、在 qwen 上几乎必错。Production 想用便宜 model？schema 必须写到能上线跑的程度。
 
 **搞不定 schema 怎么办**：装 [`examples/stage-5/tool-calling-tutor/`](../examples/stage-5/tool-calling-tutor/) skill，遇到“LLM 不调用我的 tool”、“我这 schema 哪里写坏”会自动跳出来帮你 debug。
 
