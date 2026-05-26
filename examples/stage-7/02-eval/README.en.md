@@ -92,7 +92,7 @@ def run_eval(cases, agent_fn, eval_fn):
 
 **Empirical rule**: 80% of cases use substring + heuristics; 20% use LLM-as-judge (more cost / latency).
 
-## Production tools
+## Production-ready tools
 
 - **[promptfoo](https://github.com/promptfoo/promptfoo)**: YAML config + CLI runner + diff reports
 - **[Anthropic Workbench eval](https://console.anthropic.com/workbench/evals)**: official UI, prompts as code

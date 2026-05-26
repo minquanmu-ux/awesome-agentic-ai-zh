@@ -74,7 +74,7 @@ judge = llm_call(
 
 **Key**：pro / con **獨立 call**——不要把 pro 結果丟給 con。如果 con 看到 pro、會傾向反駁 pro 而非獨立思考、bias 反而加強。
 
-## Production-grade 變形
+## Production-ready 變形
 
 - **N-way debate**：3+ agent 各持不同立場（e.g. "engineer / PM / customer view"）
 - **Iterative debate**：pro 跟 con 互看 N 輪、看誰先放棄

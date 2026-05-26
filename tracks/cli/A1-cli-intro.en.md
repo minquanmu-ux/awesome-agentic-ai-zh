@@ -65,7 +65,7 @@ Deliberately break your API key (one wrong character) and see how the CLI errors
 Detailed comparison (stars, license, strengths, recommended use cases) in [`resources/cli-agents-guide.en.md`](../../resources/cli-agents-guide.en.md). Quick entry points here:
 
 #### [anthropics/claude-code](https://github.com/anthropics/claude-code) ⭐⭐⭐⭐⭐
-★ 120k+ — Recommended first CLI agent. Built-in SKILL / plugin ecosystem, CLAUDE.md prompt system, most complete community resources.
+★ 120k+ — Recommended first CLI agent. Built-in SKILL / plugin ecosystem, CLAUDE.md prompt system, rich community resources.
 
 #### [openai/codex](https://github.com/openai/codex) ⭐⭐⭐⭐⭐
 ★ 80k+ — Top pick if you already subscribe to ChatGPT Plus / Pro; same account works in the terminal.

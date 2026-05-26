@@ -95,7 +95,7 @@ This demo uses a heuristic: user says "I + verb..." → store. Production is mor
 - **No context size control**: top-k too big, context bloats, LLM distracted
 - **Privacy / GDPR**: user requests deletion; need `forget(user_id)` API
 
-## Production-grade tools
+## Production-ready tools
 
 - **[mem0](https://github.com/mem0ai/mem0)**: full memory pipeline — auto-fact-extraction, forgetting, user-scoped namespaces
 - **[Letta (formerly MemGPT)](https://github.com/letta-ai/letta)**: two-tier memory (working + archival), OS-paging concept for LLMs

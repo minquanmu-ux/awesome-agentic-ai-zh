@@ -95,7 +95,7 @@ def chat(user_msg, memory):
 - **没 context size 控制**：recall top-k 太大、context 爆，LLM 也分心
 - **隐私 / GDPR**：用户要求删除个人信息、要有 `forget(user_id)` API
 
-## Production-grade 工具
+## Production-ready 工具
 
 - **[mem0](https://github.com/mem0ai/mem0)**：full memory pipeline、auto-fact-extraction、forgetting、user-scoped namespace
 - **[Letta (formerly MemGPT)](https://github.com/letta-ai/letta)**：两级 memory（working memory + archival storage）

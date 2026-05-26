@@ -630,7 +630,7 @@ OpenAI **o1**（2024-09）開啟、DeepSeek **R1**（2025-01）開源化、**Dee
 | **Claude Opus 4.7** | Anthropic 2026（前身：Sonnet 4.5 / Opus 4.5）| 閉源、可控 thinking budget（API 參數）、**SWE-bench / Terminal-bench 領先** | [Anthropic extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) |
 | **Gemini 3.1 Pro** | Google 2026-02（前身：Gemini 2.5 Thinking 2025、Gemini 3 2025-11）| 閉源、可看 thinking trace、**GPQA Diamond 94.3%**、價格 / 速度 / multimodal 領先 | [Gemini API](https://ai.google.dev/gemini-api/docs/thinking) |
 | **DeepSeek-V4 / V4-Pro / V4-Flash** | DeepSeek 2026-04 preview（前身：R1 2025-01 → V3.1）| 開源 **MIT license**、agent-focused 訓練、推理 + 工具使用 + 知識處理整合、R 系列 reasoning 已併入主線 | [HF DeepSeek-V4-Pro](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)、[R1 paper（方法 baseline）](https://arxiv.org/abs/2501.12948)、[CNBC report](https://www.cnbc.com/2026/04/24/deepseek-v4-llm-preview-open-source-ai-competition-china.html) |
-| **QwQ-32B / QvQ-72B** | Alibaba Qwen 2024-11 ~ 2026 | 開源 **Apache 2.0**、32B 在小尺寸 reasoning 仍是首選、QvQ 是視覺版本 | [QwQ blog](https://qwenlm.github.io/blog/qwq-32b-preview/) |
+| **QwQ-32B / QvQ-72B** | Alibaba Qwen 2024-11 ~ 2026 | 開源 **Apache 2.0**、32B 在小尺寸 reasoning 仍是不錯的選擇、QvQ 是視覺版本 | [QwQ blog](https://qwenlm.github.io/blog/qwq-32b-preview/) |
 
 ### 兩條路怎麼選
 

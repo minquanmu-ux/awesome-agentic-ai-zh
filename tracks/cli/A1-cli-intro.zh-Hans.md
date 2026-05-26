@@ -67,7 +67,7 @@
 详细比较（star、license、强弱项、推荐场景）见 [`resources/cli-agents-guide.zh-Hans.md`](../../resources/cli-agents-guide.zh-Hans.md)。这里只给快速 entry point：
 
 #### [anthropics/claude-code](https://github.com/anthropics/claude-code) ⭐⭐⭐⭐⭐
-★ 120k+ — 第一个 CLI agent 推荐。内建 SKILL / plugin 生态、CLAUDE.md prompt 系统、最完整的中文社群资源。
+★ 120k+ — 第一个 CLI agent 推荐。内建 SKILL / plugin 生态、CLAUDE.md prompt 系统、中文社群资源丰富。
 
 #### [openai/codex](https://github.com/openai/codex) ⭐⭐⭐⭐⭐
 ★ 80k+ — 已订 ChatGPT Plus / Pro 的人很合适；用同一个 账号就能在终端机跑。

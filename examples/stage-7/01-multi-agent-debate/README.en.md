@@ -67,7 +67,7 @@ judge = llm_call(
 
 **Key**: PRO and CON are **independent calls**. Don't pass PRO's output into CON — CON would then react to PRO rather than think independently, amplifying bias.
 
-## Production variants
+## Production-ready variants
 
 - **N-way debate**: 3+ agents holding different perspectives (e.g., "engineer / PM / customer view")
 - **Iterative debate**: PRO and CON see each other and rebut for N rounds; first to concede loses

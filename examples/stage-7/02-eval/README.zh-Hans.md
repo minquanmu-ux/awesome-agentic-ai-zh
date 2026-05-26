@@ -92,7 +92,7 @@ def run_eval(cases, agent_fn, eval_fn):
 
 **Production 经验**：80% case 用 substring + heuristic、20% 用 LLM-as-judge（cost / latency 较高）。
 
-## Production-grade tools
+## Production-ready tools
 
 - **[promptfoo](https://github.com/promptfoo/promptfoo)**：YAML config + CLI runner + diff report
 - **[Anthropic Workbench eval](https://console.anthropic.com/workbench/evals)**：官方 eval UI、prompts as code

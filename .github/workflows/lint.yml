@@ -69,21 +69,73 @@ jobs:
             echo "✓ No zh-TW residue."
           fi
 
-      - name: Check overclaim phrases
+      - name: Check overclaim phrases (strict — blocking)
         run: |
-          # 同樣只掃「公開展示」的內容檔（zh + en），不掃 policy doc / .ai / book / scripts。
-          OVERCLAIMS=("the most canonical" "Production-grade Chinese tutorial" "全世界最好的" "業界最強" "最緊迫")
+          # 掃公開展示的內容檔（zh + en + zh-Hans）找 style-guide §3 列為禁用的 overclaim 用語。
+          # 範圍涵蓋 stages/ branches/ walkthroughs/ tracks/ examples/ resources/（含
+          # mcp-skills-catalog / cookbook / cli-agents-guide 等實際被讀者讀到的文件）+ 各
+          # top-level 文件。
+          #
+          # 路徑 hygiene：
+          #   - `.github/` 整個資料夾不在掃描 paths（內含 outreach drafts 跟「Don't say...」
+          #     明示禁用清單，本來就會引用禁用詞、不該被掃）。
+          #   - `resources/style-guide.md` + `resources/glossary.md` 透過 grep -v 後過濾
+          #     （它們在 resources/ 下、必然被 recurse 到，且為了當 policy 例子會列禁用詞）。
+          #
+          # 用 `grep -Fi`（fixed string + case-insensitive）—— 2026-05-26 incident：上一輪
+          # sweep 用 -F 是 case-sensitive、漏掉 examples/ 內 H2 標題的 `Production-grade`
+          # 大寫變體 5 處。這次升級為 -Fi。
+          #
+          # Warn-only step history：原本有第二個 step 掃 `最完整的` 之類的灰色地帶用語、
+          # 用 ::warning:: 不擋 PR。實測 corpus 有 30+ hit（多半是稱讚 Datawhale Hello-Agents
+          # 之類他人專案的 citation framing、非 self-promo overclaim），噪音大於價值、移除。
+          # 如未來要為其他灰色詞加 warn 機制，pattern 可參考 git log 找 2026-05-26 此 step
+          # 的初版實作（drafted but removed pre-merge）。
+          OVERCLAIMS=(
+            # === existing canonical bans ===
+            "the most canonical"
+            "全世界最好的"
+            "業界最強"
+            "最緊迫"
+            # === style-guide §3 expansions (2026-05-26, P3-G from audit) ===
+            "首選"            # zh-TW "top choice"
+            "首选"            # zh-Hans variant
+            "唯一選擇"        # zh-TW "only choice"
+            "唯一选择"        # zh-Hans
+            "業界最佳"        # zh-TW "industry best" (sibling of 業界最強)
+            "业界最佳"        # zh-Hans
+            # === audit P3-G English overclaim (case-insensitive matches all variants) ===
+            "production-grade"   # supersedes the older exact "Production-grade Chinese tutorial"
+            "world-class"
+            "best-in-class"
+            "cutting-edge"
+            "state-of-the-art"
+            "industry-leading"
+          )
           FOUND=0
           for phrase in "${OVERCLAIMS[@]}"; do
-            if grep -rn --include="*.md" \
-                  -F "$phrase" stages branches walkthroughs README.md README.en.md CONTRIBUTING.md CONTRIBUTING.en.md CONTRIBUTORS.md 2>/dev/null; then
+            hits=$(grep -rIn --include="*.md" -Fi "$phrase" \
+                  stages branches walkthroughs tracks examples resources \
+                  README.md README.en.md README.zh-Hans.md \
+                  CONTRIBUTING.md CONTRIBUTING.en.md CONTRIBUTING.zh-Hans.md \
+                  CONTRIBUTORS.md \
+                  ROADMAP.md ROADMAP.en.md ROADMAP.zh-Hans.md \
+                  CAPSTONE.md CAPSTONE.en.md CAPSTONE.zh-Hans.md \
+                  PROGRESS.md PROGRESS.en.md PROGRESS.zh-Hans.md \
+                  RESOURCES.md RESOURCES.en.md RESOURCES.zh-Hans.md \
+                  2>/dev/null \
+                  | grep -v "^resources/style-guide" \
+                  | grep -v "^resources/glossary" \
+                  || true)
+            if [ -n "$hits" ]; then
               echo "❌ Overclaim phrase found: $phrase"
+              echo "$hits"
               FOUND=$((FOUND+1))
             fi
           done
           if [ $FOUND -gt 0 ]; then
             echo ""
-            echo "Found $FOUND overclaim violations. See resources/style-guide.md §3 'Overclaim 用語禁用'."
+            echo "Found $FOUND overclaim category/categories. See resources/style-guide.md §3 'Overclaim 用語禁用'."
             exit 1
           fi
           echo "✓ No overclaim phrases detected."

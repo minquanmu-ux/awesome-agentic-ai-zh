@@ -626,7 +626,7 @@ OpenAI's **o1** (Sep 2024), followed by open-source efforts like DeepSeek's **R1
 | **Claude Opus 4.7** | Anthropic 2026 (Predecessors: Sonnet 4.5 / Opus 4.5) | Closed-source, controllable thinking budget (API parameter), **leading in SWE-bench / Terminal-bench** | [Anthropic extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) |
 | **Gemini 3.1 Pro** | Google 2026-02 (Predecessors: Gemini 2.5 Thinking 2025, Gemini 3 2025-11) | Closed-source, viewable thinking traces, **GPQA Diamond 94.3%**, leading in price/speed/multimodality | [Gemini API](https://ai.google.dev/gemini-api/docs/thinking) |
 | **DeepSeek-V4 / V4-Pro / V4-Flash** | DeepSeek 2026-04 preview (Predecessors: R1 2025-01 → V3.1) | Open-source **MIT license**, agent-focused training, integrated reasoning + tool use + knowledge processing. R series reasoning now mainline. | [HF DeepSeek-V4-Pro](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro), [R1 paper (method baseline)](https://arxiv.org/abs/2501.12948), [CNBC report](https://www.cnbc.com/2026/04/24/deepseek-v4-llm-preview-open-source-ai-competition-china.html) |
-| **QwQ-32B / QvQ-72B** | Alibaba Qwen 2024-11 ~ 2026 | Open-source **Apache 2.0**, QwQ-32B remains a top choice for small-size reasoning, QvQ is the visual variant. | [QwQ blog](https://qwenlm.github.io/blog/qwq-32b-preview/) |
+| **QwQ-32B / QvQ-72B** | Alibaba Qwen 2024-11 ~ 2026 | Open-source **Apache 2.0**, QwQ-32B remains a strong option for small-size reasoning, QvQ is the visual variant. | [QwQ blog](https://qwenlm.github.io/blog/qwq-32b-preview/) |
 
 ### How to Choose Between the Two Paths
 
