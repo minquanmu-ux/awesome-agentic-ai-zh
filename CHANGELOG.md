@@ -13,6 +13,8 @@ Format: `YYYY-MM-DD · category · 1-line summary (commit-sha)`.
 - **catalog** · `1weiho/open-slide` (★4.9k, MIT) added to §2 as an agent-native slide framework — ships Claude Code Skills, distinct from Stage 4 orchestration frameworks; tri-locale (`7d3fd5d`).
 - **docs** · MCP/Skills catalog count made drift-proof — stale `62` → robust `65+`, category count reconciled to 15, across 33 files / all locales (`3782dd4`). Propagated the 7→8 stage reality into design notes / style-guide / reader docs (`39d397a`) and fixed outreach-draft count drift (`25785f0`).
 - **outreach** · send-day copy-paste packages playbook for awesome-list submissions (`afd7a76`).
+- **content** · per-chapter improvement audit (12-agent fan-out + skeptical filter) → 5 gap-fills, all tri-locale: Stage 3 lethal-trifecta security callout + MCP router note + glossary (`f3bde60`); Stage 1 next-token / sampling mental-model box (`1bd171f`); Stage 5 Hooks (L3 control layer) subsection (`9d2897f`); Stage 7 Loop Engineering note + glossary (`eb8e64c`).
+- **catalog** · new Web Search / Retrieval category (exa-mcp + tavily-mcp) + Context7 in Dev-Collaboration; category count 15→16 (`b1718d3`).
 
 ---
 
