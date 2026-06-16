@@ -26,13 +26,13 @@
 3. [Google Workspace](#3-google-workspace)（2）
 4. [Microsoft 365](#4-microsoft-365)（3）
 5. [開發協作（GitHub / Atlassian / Slack…）](#5-開發協作github--atlassian--slack)（7）
-6. [資料庫](#6-資料庫)（7）
+6. [資料庫](#6-資料庫)（8）
 7. [瀏覽器自動化 / 網頁抓取](#7-瀏覽器自動化--網頁抓取)（4）
 8. [設計（Figma / Excalidraw）](#8-設計figma--excalidraw)（3）
 9. [監控 / Observability](#9-監控--observability)（3）
 10. [媒體 / 串流（YouTube / Spotify）](#10-媒體--串流youtube--spotify)（3）
 11. [中文圈專用](#11-中文圈專用)（9）
-12. [其他常用（Cloudflare / Stripe…）](#12-其他常用cloudflare--stripe)（3）
+12. [其他常用（Cloudflare / Stripe…）](#12-其他常用cloudflare--stripe)（4）
 13. [研究工作流 Skills（學術 / paper / 文獻）](#13-研究工作流-skills學術--paper--文獻)（4）
 14. [Multi-LLM Delegation Skills](#14-multi-llm-delegation-skills)（3）
 15. [金融 / 交易 Agents](#15-金融--交易-agents)（2）
@@ -470,6 +470,18 @@
 **適合誰**：用 Redis 當 cache / vector DB / queue 的人。
 **備註**：官方維護；包含 vector search 整合。
 
+### [awslabs/mcp](https://github.com/awslabs/mcp) ⭐⭐⭐⭐
+
+| 欄位 | 內容 |
+|---|---|
+| Stars | ★ 9.3k+ |
+| License | Apache-2.0 |
+| 推薦度 | ⭐⭐⭐⭐（**AWS 官方**） |
+
+**教什麼**：AWS 官方 MCP server（Lambda / S3 / DynamoDB / CloudWatch / Cost Explorer 等）。
+**適合誰**：在 AWS 上、想讓 agent 查詢 / 操作雲端資源的團隊。
+**備註**：AWS 官方維護；沿用你現有的 AWS 登入（CLI profile / IAM role），不用另外管 token。
+
 ---
 
 ## 7. 瀏覽器自動化 / 網頁抓取
@@ -831,6 +843,18 @@
 **教什麼**：YIELD INTELLIGENCE hosted remote MCP server——即時美國國債殖利率 + 股息 ETF / REIT / 特別股分析 + 被動收入投資組合優化。2 個工具：`analyze_yield_opportunities`（掃描被動收入機會）+ `optimize_income_portfolio`（目標月收入建立投資組合）。已列入 Anthropic 官方 MCP Registry（`io.github.thebrierfox/intuitek-ace`，since 2026-05-10）。
 **適合誰**：用 Claude Code / Claude Desktop 做個人理財分析、想讓 AI 找出被動收入機會的人。hosted remote MCP server 範例——直接 plug URL、0 安裝、適合 Stage 5 學完 MCP 概念後拿來實驗 hosted vs self-hosted 差異。
 **備註**：Live endpoint `https://api.intuitek.ai/yield/mcp`（no auth、no API key）。x402 micropayment $1 USDC/call on Base（agent-to-agent 場景）；一般使用者免費。非交易型，純分析工具。GitHub：[thebrierfox/intuitek-ace](https://github.com/thebrierfox/intuitek-ace)（MIT License）。
+
+### [ComposioHQ/composio](https://github.com/ComposioHQ/composio) ⭐⭐⭐⭐⭐
+
+| 欄位 | 內容 |
+|---|---|
+| Stars | ★ 28.8k+ |
+| License | MIT |
+| 推薦度 | ⭐⭐⭐⭐⭐（1000+ 工具整合樞紐） |
+
+**教什麼**：一個平台（SDK + MCP server），把 agent 連到 1000+ 應用（Slack / GitHub / Gmail / Salesforce / Notion…），登入它幫你處理，不用一個服務各寫一個連接器。
+**適合誰**：agent 要跨大量工具、但不想維護幾十個獨立 MCP server 的團隊。
+**備註**：提供 MCP server + Python / TypeScript SDK；可透過 MCP 接到 Claude Code。屬「工具聚合器」（跟 n8n / Zapier 自動化平台同類）。
 
 ---
 

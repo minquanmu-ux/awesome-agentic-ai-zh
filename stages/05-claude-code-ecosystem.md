@@ -289,6 +289,7 @@ MCP / Skills 是「給 agent 更多能力」；**Hooks 則是反過來：在 age
 1. [**Anthropic — Introducing MCP**](https://www.anthropic.com/news/model-context-protocol) — 最初發表，概念總覽
 2. [**MCP Specification**](https://modelcontextprotocol.io/specification) — 實際的協定規格
 3. [**Complete Guide to MCP in 2026**](https://dev.to/x4nent/complete-guide-to-mcp-model-context-protocol-in-2026-architecture-implementation-and-4a11) — 實作導讀
+4. [**Microsoft — MCP for Beginners**](https://github.com/microsoft/mcp-for-beginners) — 官方循序漸進 MCP 學習課綱（概念、裝設、動手 lab；免費、GitHub 上）。★ 16k+
 
 ### 動手練習
 - **練習：MCP client** — 安裝 `modelcontextprotocol/servers/filesystem`，從 Claude Desktop 連上去。看著 Claude 讀你的檔案。

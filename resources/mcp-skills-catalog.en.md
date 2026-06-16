@@ -26,13 +26,13 @@
 3. [Google Workspace](#3-google-workspace) (2)
 4. [Microsoft 365](#4-microsoft-365) (3)
 5. [Dev Collaboration (GitHub / Atlassian / Slack…)](#5-dev-collaboration-github--atlassian--slack) (7)
-6. [Databases](#6-databases) (7)
+6. [Databases](#6-databases) (8)
 7. [Browser Automation / Web Scraping](#7-browser-automation--web-scraping) (4)
 8. [Design (Figma / Excalidraw)](#8-design-figma--excalidraw) (3)
 9. [Monitoring / Observability](#9-monitoring--observability) (3)
 10. [Media / Streaming (YouTube / Spotify)](#10-media--streaming-youtube--spotify) (3)
 11. [Chinese-language Ecosystem](#11-chinese-language-ecosystem) (9)
-12. [Other Common (Cloudflare / Stripe…)](#12-other-common-cloudflare--stripe) (3)
+12. [Other Common (Cloudflare / Stripe…)](#12-other-common-cloudflare--stripe) (4)
 13. [Research Workflow Skills](#13-research-workflow-skills-academic--paper--lit) (4)
 14. [Multi-LLM Delegation Skills](#14-multi-llm-delegation-skills) (3)
 15. [Finance / Trading Agents](#15-finance--trading-agents) (2)
@@ -470,6 +470,18 @@
 **Audience**: people using Redis as cache / vector DB / queue.
 **Notes**: officially maintained; includes vector search.
 
+### [awslabs/mcp](https://github.com/awslabs/mcp) ⭐⭐⭐⭐
+
+| Field | Value |
+|---|---|
+| Stars | ★ 9.3k+ |
+| License | Apache-2.0 |
+| Rating | ⭐⭐⭐⭐ (**AWS official**) |
+
+**What it does**: AWS's first-party MCP servers (Lambda / S3 / DynamoDB / CloudWatch / Cost Explorer and more).
+**Audience**: teams on AWS who want agents to query / operate their cloud.
+**Notes**: officially maintained by AWS; uses your existing AWS login (CLI profiles / IAM roles), no separate token to manage.
+
 ---
 
 ## 7. Browser Automation / Web Scraping
@@ -830,6 +842,18 @@
 **What it does**: YIELD INTELLIGENCE hosted remote MCP server — live US Treasury yield rates, dividend ETF / REIT / preferred stock analysis, and passive income portfolio optimization. Two tools: `analyze_yield_opportunities` (scans passive income options) + `optimize_income_portfolio` (builds a portfolio toward a target monthly income). Listed in the Anthropic official MCP Registry (`io.github.thebrierfox/intuitek-ace`, since 2026-05-10).
 **Audience**: people doing personal finance analysis in Claude Code / Claude Desktop who want AI to surface passive income opportunities. Good hands-on example of a hosted remote MCP server — plug the URL in, zero install, useful for Stage 5 learners exploring the hosted vs self-hosted difference.
 **Notes**: Live endpoint `https://api.intuitek.ai/yield/mcp` (no auth, no API key required). x402 micropayment $1 USDC/call on Base (agent-to-agent scenarios); free for regular users. Analysis-only, no trading. GitHub: [thebrierfox/intuitek-ace](https://github.com/thebrierfox/intuitek-ace) (MIT License).
+
+### [ComposioHQ/composio](https://github.com/ComposioHQ/composio) ⭐⭐⭐⭐⭐
+
+| Field | Value |
+|---|---|
+| Stars | ★ 28.8k+ |
+| License | MIT |
+| Rating | ⭐⭐⭐⭐⭐ (1000+ tool-integration hub) |
+
+**What it does**: a platform (SDKs + MCP servers) that connects agents to 1000+ apps (Slack / GitHub / Gmail / Salesforce / Notion…) and handles the logins for you, so you don't build a separate connector for each one.
+**Audience**: teams whose agents need broad API coverage without maintaining dozens of separate MCP servers.
+**Notes**: provides MCP servers + Python / TypeScript SDKs; connect to Claude Code via MCP. A "tool aggregator" (compare with n8n / Zapier for automation).
 
 ---
 

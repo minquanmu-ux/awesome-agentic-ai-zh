@@ -446,6 +446,7 @@ After learning the three patterns, you do not need to build a memory store from 
 | [**mem0**](https://github.com/mem0ai/mem0) | 55.6k★ | Apache-2.0 | **Chatbot / personal-assistant user-level memory** | Auto fact extraction + forgetting + namespace, production-tested, largest community |
 | [**Letta**](https://github.com/letta-ai/letta) (formerly MemGPT) | 22.7k★ | Apache-2.0 | **Long-session agents** (measured in months) | OS-style paging memory (working + archival), persona stability, MemGPT paper lineage |
 | [**Zep**](https://github.com/getzep/zep) | 4.6k★ | Apache-2.0 | **Temporal KG-based memory** | Builds conversation history into a temporal KG for time-aware reasoning and audit trails |
+| [**graphiti**](https://github.com/getzep/graphiti) | 27.5k★ | Apache-2.0 | **Real-time knowledge-graph agent memory** | Turns an agent's past interactions into a time-aware knowledge graph it can look things up in; the engine behind Zep, usable on its own |
 | [**LangMem**](https://github.com/langchain-ai/langmem) | 1.4k★ | MIT | **LangChain-native memory** | Official LangChain memory library, integrates directly with LangGraph, useful when you are already committed to the LangChain stack |
 
 **How to choose**:
@@ -723,6 +724,7 @@ Categorized for quick reference; **choose by use case ("Entry Point") and follow
 | **Vector DB**<br>(Production Scale) | [Qdrant](https://github.com/qdrant/qdrant) | ⭐⭐⭐⭐⭐ | When Chroma can't keep up, need production scale | Rust-based vector DB, offers cloud and self-hosted options. ★ 31k+ |
 | **Vector DB**<br>(Hybrid) | [Weaviate](https://github.com/weaviate/weaviate) | ⭐⭐⭐⭐ | Production deployment + schema constraints | Built-in modules (text2vec/generative/classification), schema-driven, native BM25 + vector hybrid. ★ 16k+ |
 | **Vector DB**<br>(Existing Postgres) | [pgvector](https://github.com/pgvector/pgvector) | ⭐⭐⭐⭐ | Teams already using Postgres | Postgres extension, unified SQL + vector in one DB, simplest ops. ★ 21k+ |
+| **Vector DB**<br>(Runs in-app) | [lancedb/lancedb](https://github.com/lancedb/lancedb) | ⭐⭐⭐⭐ | Apps that want a vector DB built in, with no separate server | A vector DB that runs inside your app (no server to start); handles text + images, and searches by keyword + vector together. ★ 10k+, Apache-2.0. |
 | **Memory Framework**<br>(Auto Fact Extraction) | [mem0ai/mem0](https://github.com/mem0ai/mem0) | ⭐⭐⭐⭐⭐ | Personal assistants / chatbots needing user-level memory | Self-refining memory layer, cross-session fact storage. ★ 54k+ |
 | **Memory Framework**<br>(OS-Paging) | [Letta (formerly MemGPT)](https://github.com/letta-ai/letta) | ⭐⭐⭐⭐ | Agents running for extended periods (months) | Hierarchical memory (working/archival), OS-paging concept. ★ 22k+ |
 | **Memory (In-Framework)** | [LangChain — Memory](https://python.langchain.com/docs/concepts/memory/) | ⭐⭐⭐ | Already using LangChain | 4 abstract memory types (buffer/summary/vectorstore-backed/entity). |

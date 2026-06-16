@@ -289,6 +289,7 @@ MCP / Skills give the agent *more* abilities; **Hooks are the reverse: you attac
 1. [**Anthropic — Introducing MCP**](https://www.anthropic.com/news/model-context-protocol) — The original announcement, a conceptual overview
 2. [**MCP Specification**](https://modelcontextprotocol.io/specification) — The actual protocol specification
 3. [**Complete Guide to MCP in 2026**](https://dev.to/x4nent/complete-guide-to-mcp-model-context-protocol-in-2026-architecture-implementation-and-4a11) — An implementation guide
+4. [**Microsoft — MCP for Beginners**](https://github.com/microsoft/mcp-for-beginners) — Official step-by-step MCP curriculum (concepts, setup, hands-on labs; free, GitHub-based). ★ 16k+
 
 ### Hands-on Exercises
 - **Exercise: MCP client** — Install `modelcontextprotocol/servers/filesystem` and connect to it from Claude Desktop. Watch Claude read your files.
